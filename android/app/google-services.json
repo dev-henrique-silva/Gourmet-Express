@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "167691567409",
+    "project_id": "gourmet-express-416af",
+    "storage_bucket": "gourmet-express-416af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167691567409:android:e90c8fc181e52243133010",
+        "android_client_info": {
+          "package_name": "br.com.henrique.gourmetexpress"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyFZ0gPIQ2Iodo-G1lXME0zlHJYKmS3xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
