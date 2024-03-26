@@ -5,6 +5,7 @@ enum LoginString {
   entrar('Entrar'),
   naoTemUmaConta('Não tem uma conta?'),
   cadastreSe('Cadastre-se'),
+  erro('Erro'),
   ;
 
   const LoginString(this.texto);

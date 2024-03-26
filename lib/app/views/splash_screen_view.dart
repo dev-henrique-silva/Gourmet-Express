@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gourmetexpress/app/services/firebase_auth/firebase_auth_gate.dart';
+import 'package:gourmetexpress/app/services/firebase_auth_gate/firebase_auth_gate.dart';
 import 'package:gourmetexpress/app/utils/images_assets/images_assets.dart';
 
 class SplashScreenView extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const AuthGate(),
+          builder: (context) => const FirebaseAuthGate(),
         ),
       );
     }

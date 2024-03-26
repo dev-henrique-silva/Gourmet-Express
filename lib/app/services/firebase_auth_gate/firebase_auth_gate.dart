@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gourmetexpress/app/services/login_or_register.dart';
-import 'package:gourmetexpress/app/views/home/home_view.dart';
+import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
+import 'package:gourmetexpress/app/views/home_view.dart';
+import 'package:gourmetexpress/app/views/login_view.dart';
+import 'package:gourmetexpress/app_inject.dart';
 
-class AuthGate extends StatelessWidget {
-  const AuthGate({super.key});
+class FirebaseAuthGate extends StatelessWidget {
+  const FirebaseAuthGate({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,9 @@ class AuthGate extends StatelessWidget {
           } else if (snapshot.hasData) {
             return const HomeView();
           } else {
-            return const LoginOrRegister();
+            return LoginView(
+              loginCubit: getIt<LoginCubit>(),
+            );
           }
         },
       ),

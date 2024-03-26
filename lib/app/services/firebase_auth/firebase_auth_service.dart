@@ -1,9 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gourmetexpress/app/services/firebase_auth/i_firebase_auth_service.dart';
 
-class FirebaseAuthService {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+class FirebaseAuthService implements IFirebaseAuthService {
+  final FirebaseAuth _firebaseAuth;
 
+  FirebaseAuthService({required FirebaseAuth firebaseAuth})
+      : _firebaseAuth = firebaseAuth;
+
+  @override
   Future<User?> signUpWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -20,6 +25,7 @@ class FirebaseAuthService {
     return null;
   }
 
+  @override
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -36,6 +42,7 @@ class FirebaseAuthService {
     return null;
   }
 
+  @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
