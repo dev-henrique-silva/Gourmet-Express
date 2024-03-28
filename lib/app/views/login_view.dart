@@ -6,6 +6,7 @@ import 'package:gourmetexpress/app/components/flushbar/flushbar_error_widget.dar
 import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/images_assets/images_assets.dart';
+import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 import 'package:gourmetexpress/app/utils/strings/login_string.dart';
 
 class LoginView extends StatefulWidget {
@@ -43,7 +44,7 @@ class _LoginViewState extends State<LoginView> with NavigationMixin {
           } else if (state is LoginFailure) {
             FlushbarErrorWidget(
               context: context,
-              title: LoginString.erro.texto,
+              title: AppString.erro.texto,
               message: state.message,
             );
           }
@@ -75,18 +76,18 @@ class _LoginViewState extends State<LoginView> with NavigationMixin {
                       const SizedBox(height: 25),
                       CustomTextField(
                         controller: emailController,
-                        hintText: LoginString.email.texto,
+                        hintText: AppString.email.texto,
                         obscureText: false,
                       ),
                       const SizedBox(height: 10),
                       CustomTextField(
                         controller: passwordController,
-                        hintText: LoginString.senha.texto,
+                        hintText: AppString.senha.texto,
                         obscureText: true,
                       ),
                       const SizedBox(height: 10),
                       CustomButton(
-                        text: LoginString.entrar.texto,
+                        text: AppString.entrar.texto,
                         isLoading: state is LoginLoading,
                         onPressed: () {
                           loginCubit.login(

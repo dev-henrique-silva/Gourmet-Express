@@ -7,6 +7,7 @@ import 'package:gourmetexpress/app/components/flushbar/flushbar_success_widget.d
 import 'package:gourmetexpress/app/cubits/register_account/register_account_cubit.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/images_assets/images_assets.dart';
+import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 import 'package:gourmetexpress/app/utils/strings/register_string.dart';
 
 class RegisterView extends StatefulWidget {
@@ -47,7 +48,7 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
               Duration.zero,
               () => FlushbarSuccessWidget(
                 context: context,
-                title: RegisterString.sucesso.texto,
+                title: AppString.sucesso.texto,
                 message: RegisterString.contaCriadaComSucesso.texto,
               ),
             );
@@ -56,7 +57,7 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
           } else if (state is RegisterFailure) {
             FlushbarErrorWidget(
               context: context,
-              title: RegisterString.erro.texto,
+              title: AppString.erro.texto,
               message: state.message,
             );
           }
@@ -87,12 +88,12 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
                     const SizedBox(height: 25),
                     CustomTextField(
                       controller: emailController,
-                      hintText: RegisterString.email.texto,
+                      hintText: AppString.email.texto,
                     ),
                     const SizedBox(height: 10),
                     CustomTextField(
                       controller: passwordController,
-                      hintText: RegisterString.senha.texto,
+                      hintText: AppString.senha.texto,
                       obscureText: true,
                     ),
                     const SizedBox(height: 10),

@@ -1,0 +1,99 @@
+
+[
+  {
+    "name": "Hamburger Artesanal",
+    "description": "Pão de hambúrguer, carne moída com 20 a 25% de gordura, queijo prato, presunto, salada, milho verde, evilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger.png",
+    "price": 25.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Extra", "price": 2.00},
+      {"name": "Peito de Peru", "price": 3.00},
+      {"name": "Rúcula", "price": 3.50}
+    ]
+  },
+  {
+    "name": "Hamburger de Frango",
+    "description": "Pão de hambúrguer, frango moído, queijo mussarela, presunto, salada, milho verde, ervilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger_chicken.png",
+    "price": 22.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Extra", "price": 2.00},
+      {"name": "Bacon", "price": 3.00},
+      {"name": "Rúcula", "price": 3.50}
+    ]
+  },
+  {
+    "name": "Hamburger Vegano",
+    "description": "Pão de hambúrguer, proteína de soja, queijo vegano, salada, milho verde, ervilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger_vegan.png",
+    "price": 31.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Vegana", "price": 2.50},
+      {"name": "Cogumelos", "price": 3.50},
+      {"name": "Tomate cereja", "price": 4.50}
+    ]
+  },
+  {
+    "name": "Hamburger de Cordeiro",
+    "description": "Pão de hambúrguer, carne de cordeiro, queijo prato, salada, milho verde, ervilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger_lamb.png",
+    "price": 28.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Extra", "price": 2.00},
+      {"name": "Cogumelos", "price": 3.50},
+      {"name": "barbecue", "price": 2.50}
+    ]
+  },
+  {
+    "name": "Hamburger de Porco",
+    "description": "Pão de hambúrguer, carne de porco, queijo mussarela, salada, milho verde, ervilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger_pork.png",
+    "price": 24.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Extra", "price": 2.00},
+      {"name": "Bacon", "price": 3.00},
+      {"name": "Rúcula", "price": 3.50}
+    ]
+  },
+  {
+    "name": "Hamburger de Peru",
+    "description": "Pão de hambúrguer, carne de peru, queijo mussarela, salada, milho verde, ervilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger_turkey.png",
+    "price": 26.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Extra", "price": 2.00},
+      {"name": "Frango desfiado", "price": 3.00},
+      {"name": "barbecue", "price": 2.50}
+    ]
+  },
+  {
+    "name": "Hamburger de Queijo",
+    "description": "Pão de hambúrguer, carne moída, queijo cheddar, queijo prato, salada, milho verde, ervilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger_cheese.png",
+    "price": 27.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Extra", "price": 2.00},
+      {"name": "Bacon", "price": 3.00},
+      {"name": "Rúcula", "price": 3.50}
+    ]
+  },
+  {
+    "name": "Hamburger Duplo",
+    "description": "Pão de hambúrguer, Duas carnes moídas, Queijo prato, presunto, salada, milho verde, ervilha.",
+    "imagePath": "assets/img/mocks/burgers/hamburger_double.png",
+    "price": 29.99,
+    "category": "hamburgers",
+    "availableAddons": [
+      {"name": "Maionese Extra", "price": 2.00},
+      {"name": "Frango Desfiado", "price": 3.00},
+      {"name": "barbecue", "price": 2.50}
+    ]
+  }
+]

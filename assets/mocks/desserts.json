@@ -1,0 +1,90 @@
+[
+    {
+      "name": "Torta de Maçã",
+      "description": "Massa crocante, recheio de maçãs frescas, canela e açúcar.",
+      "imagePath": "assets/img/mocks/desserts/dessert_apple_pie.png",
+      "price": 14.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "Sorvete de Baunilha", "price": 2.00},
+        {"name": "Chantilly", "price": 1.50}
+      ]
+    },
+    {
+      "name": "Cheesecake de Morango",
+      "description": "Base de biscoito, recheio cremoso de queijo, cobertura de morango.",
+      "imagePath": "assets/img/mocks/desserts/dessert_strawberry_cheesecake.png",
+      "price": 16.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "Chantilly", "price": 1.50},
+        {"name": "Calda de Chocolate", "price": 2.00}
+      ]
+    },
+    {
+      "name": "Brownie de Chocolate",
+      "description": "Brownie rico e denso de chocolate, nozes opcionais.",
+      "imagePath": "assets/img/mocks/desserts/dessert_brownie.png",
+      "price": 14.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "Sorvete de Baunilha", "price": 2.00},
+        {"name": "Chantilly", "price": 1.50}
+      ]
+    },
+    {
+      "name": "Sorvete de Baunilha",
+      "description": "Sorvete cremoso de baunilha.",
+      "imagePath": "assets/img/mocks/desserts/dessert_vanilla_ice_cream.png",
+      "price": 12.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "Calda de Chocolate", "price": 1.50},
+        {"name": "Nozes", "price": 1.50}
+      ]
+    },
+    {
+      "name": "Tiramisu",
+      "description": "Camadas de biscoito embebido em café, mascarpone e cacau em pó.",
+      "imagePath": "assets/img/mocks/desserts/dessert_tiramisu.png",
+      "price": 16.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "Calda de banana", "price": 1.50},
+        {"name": "Calda de morango", "price": 1.50}
+      ]
+    },
+    {
+      "name": "Pudim de Leite",
+      "description": "Pudim de leite condensado com calda de caramelo.",
+      "imagePath": "assets/img/mocks/desserts/dessert_milk_pudding.png",
+      "price": 13.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "Calda de chocolate", "price": 1.50},
+        {"name": "raspasa de chocolate", "price": 2.50}
+      ]
+    },
+    {
+      "name": "Bolo de Cenoura",
+      "description": "Bolo de cenoura úmido com cobertura de chocolate.",
+      "imagePath": "assets/img/mocks/desserts/dessert_carrot_cake.png",
+      "price": 14.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "Chantilly", "price": 1.50}
+      ]
+    },
+    {
+      "name": "Torta de Limão",
+      "description": "Base de biscoito, recheio cremoso de limão, merengue tostado.",
+      "imagePath": "assets/img/mocks/desserts/dessert_lemon_pie.png",
+      "price": 15.99,
+      "category": "sobremesas",
+      "availableAddons": [
+        {"name": "raspasa de chocolate", "price": 2.50},
+        {"name": "Chantilly", "price": 1.50}
+      ]
+    }
+  ]
+  

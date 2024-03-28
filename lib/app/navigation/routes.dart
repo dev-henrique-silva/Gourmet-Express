@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
 import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
 import 'package:gourmetexpress/app/cubits/register_account/register_account_cubit.dart';
 import 'package:gourmetexpress/app/views/home_view.dart';
@@ -10,5 +11,5 @@ final Map<String, WidgetBuilder> routes = {
   '/register_account': (context) =>
       RegisterView(registerCubit: getIt<RegisterAccountCubit>()),
   '/login': (context) => LoginView(loginCubit: getIt<LoginCubit>()),
-  '/home': (context) => const HomeView(),
+  '/home': (context) => HomeView(homeCubit: getIt<HomeCubit>()),
 };
