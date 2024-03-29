@@ -1,9 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:gourmetexpress/app/controllers/home_controller.dart';
+import 'package:gourmetexpress/app/models/address_model.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 import 'package:gourmetexpress/app/utils/strings/home_string.dart';
 
-class CurrentLocation extends StatelessWidget {
-  const CurrentLocation({super.key});
+class CurrentLocation extends StatefulWidget {
+  final String docId;
+  final String road;
+  final String residenceNumber;
+  final String district;
+  final HomeController homeController;
+  const CurrentLocation({
+    Key? key,
+    required this.docId,
+    required this.road,
+    required this.residenceNumber,
+    required this.district,
+    required this.homeController,
+  }) : super(key: key);
+
+  @override
+  State<CurrentLocation> createState() => _CurrentLocationState();
+}
+
+class _CurrentLocationState extends State<CurrentLocation> {
+  late final TextEditingController roadController;
+  late final TextEditingController residenceNumberController;
+  late final TextEditingController districtController;
+
+  String get roadAndNumber => "${widget.road}, ${widget.residenceNumber}";
+  HomeController get homeController => widget.homeController;
+  String get docId => widget.docId;
+  String get road => widget.road;
+  String get residenceNumber => widget.residenceNumber;
+  String get district => widget.district;
+
+  @override
+  void initState() {
+    roadController = TextEditingController(text: road);
+    residenceNumberController = TextEditingController(text: residenceNumber);
+    districtController = TextEditingController(text: district);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    roadController.dispose();
+    residenceNumberController.dispose();
+    districtController.dispose();
+    super.dispose();
+  }
 
   void openLocationSearchBox(BuildContext context) {
     showDialog(
@@ -15,15 +61,21 @@ class CurrentLocation extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               TextField(
+                controller: roadController,
                 decoration:
-                    InputDecoration(hintText: HomeString.endereco.texto),
+                    InputDecoration(labelText: HomeString.endereco.texto),
               ),
               TextField(
-                decoration: InputDecoration(hintText: HomeString.numero.texto),
+                controller: residenceNumberController,
+                decoration: InputDecoration(
+                  labelText: HomeString.numero.texto,
+                ),
+                maxLength: 8,
                 keyboardType: TextInputType.number,
               ),
               TextField(
-                decoration: InputDecoration(hintText: HomeString.bairro.texto),
+                controller: districtController,
+                decoration: InputDecoration(labelText: HomeString.bairro.texto),
               ),
             ],
           ),
@@ -33,7 +85,28 @@ class CurrentLocation extends StatelessWidget {
               child: Text(AppString.cancelar.texto),
             ),
             MaterialButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                if (docId.isEmpty) {
+                  homeController.postAddress(
+                    AddressModel(
+                      road: roadController.text,
+                      residenceNumber: residenceNumberController.text,
+                      district: districtController.text,
+                    ),
+                  );
+                } else {
+                  homeController.putAddress(
+                    AddressModel(
+                      id: docId,
+                      road: roadController.text,
+                      residenceNumber: residenceNumberController.text,
+                      district: districtController.text,
+                    ),
+                  );
+                }
+
+                Navigator.pop(context);
+              },
               child: Text(AppString.salvar.texto),
             ),
           ],
@@ -69,14 +142,14 @@ class CurrentLocation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Rua dos Bobos, 0 ",
+                  roadAndNumber,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  "Jardim dos Bobos, Bobolândia - BO",
+                  widget.district,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.bold,

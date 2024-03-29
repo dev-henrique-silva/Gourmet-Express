@@ -7,6 +7,10 @@ enum HomeString {
   endereco('Endereço'),
   numero('Número'),
   bairro('Bairro'),
+  home('Home'),
+  meusPedidos('Meus Pedidos'),
+  contato('Contato'),
+  sair('Sair'),
   ;
 
   const HomeString(this.texto);

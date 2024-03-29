@@ -7,6 +7,7 @@ enum AppString {
   sucesso('Sucesso'),
   erro('Erro'),
   gourmetExpress('Gourmet Express'),
+  textVazio(''),
   ;
 
   const AppString(this.texto);
