@@ -14,11 +14,12 @@ mixin NavigationMixin {
         replace: replace, pushAndRemoveUntil: pushAndRemoveUntil);
   }
 
-  void goToHomePage(BuildContext context, {bool replace = false}) {
-    navigationCustom.navigate(context, '/home', replace: replace);
+  void goToHomePage(
+    BuildContext context, {
+    String? uid,
+    bool replace = false,
+  }) {
+    navigationCustom.navigate(context, '/home',
+        replace: replace, arguments: uid);
   }
 }
-
-
-// Mudar a forma de troca de tela entre criar conta e login. 
-//Possivelmente colocar arrastas para o lado.

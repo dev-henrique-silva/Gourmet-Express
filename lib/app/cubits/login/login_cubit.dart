@@ -16,8 +16,8 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       final result =
           await _loginController.login(email: email, password: password);
-      if (result) {
-        emit(LoginSuccess());
+      if (result.isNotEmpty) {
+        emit(LoginSuccess(uid: result));
       } else {
         emit(const LoginFailure(
             message: 'Falha no login! Verique seu e-mail e senha.'));

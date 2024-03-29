@@ -10,6 +10,7 @@ class CurrentLocation extends StatefulWidget {
   final String residenceNumber;
   final String district;
   final HomeController homeController;
+  final bool isLoading;
   const CurrentLocation({
     Key? key,
     required this.docId,
@@ -17,6 +18,7 @@ class CurrentLocation extends StatefulWidget {
     required this.residenceNumber,
     required this.district,
     required this.homeController,
+    required this.isLoading,
   }) : super(key: key);
 
   @override
@@ -24,9 +26,10 @@ class CurrentLocation extends StatefulWidget {
 }
 
 class _CurrentLocationState extends State<CurrentLocation> {
-  late final TextEditingController roadController;
-  late final TextEditingController residenceNumberController;
-  late final TextEditingController districtController;
+  late final TextEditingController roadController = TextEditingController();
+  late final TextEditingController residenceNumberController =
+      TextEditingController();
+  late final TextEditingController districtController = TextEditingController();
 
   String get roadAndNumber => "${widget.road}, ${widget.residenceNumber}";
   HomeController get homeController => widget.homeController;
@@ -34,14 +37,6 @@ class _CurrentLocationState extends State<CurrentLocation> {
   String get road => widget.road;
   String get residenceNumber => widget.residenceNumber;
   String get district => widget.district;
-
-  @override
-  void initState() {
-    roadController = TextEditingController(text: road);
-    residenceNumberController = TextEditingController(text: residenceNumber);
-    districtController = TextEditingController(text: district);
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -120,7 +115,12 @@ class _CurrentLocationState extends State<CurrentLocation> {
     return Padding(
       padding: const EdgeInsets.all(25.0),
       child: GestureDetector(
-        onTap: () => openLocationSearchBox(context),
+        onTap: () {
+          roadController.text = road;
+          residenceNumberController.text = residenceNumber;
+          districtController.text = district;
+          openLocationSearchBox(context);
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -138,25 +138,39 @@ class _CurrentLocationState extends State<CurrentLocation> {
                 ),
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  roadAndNumber,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
+            widget.isLoading
+                ? const Padding(
+                    padding: EdgeInsets.only(
+                      left: 50.0,
+                      top: 1.0,
+                    ),
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3.0,
+                      ),
+                    ),
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        roadAndNumber,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        widget.district,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Text(
-                  widget.district,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),

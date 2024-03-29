@@ -22,6 +22,7 @@ class FirebaseAuthGate extends StatelessWidget {
             return HomeView(
               homeCubit: getIt<HomeCubit>(),
               homeController: getIt<HomeController>(),
+              uid: snapshot.data!.uid,
             );
           } else {
             return LoginView(

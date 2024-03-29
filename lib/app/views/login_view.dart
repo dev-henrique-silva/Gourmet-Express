@@ -40,7 +40,7 @@ class _LoginViewState extends State<LoginView> with NavigationMixin {
         bloc: loginCubit,
         listener: (context, state) {
           if (state is LoginSuccess) {
-            goToHomePage(context, replace: true);
+            goToHomePage(context, uid: state.uid, replace: true);
           } else if (state is LoginFailure) {
             FlushbarErrorWidget(
               context: context,

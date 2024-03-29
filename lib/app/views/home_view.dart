@@ -18,11 +18,13 @@ import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 class HomeView extends StatefulWidget {
   final HomeCubit homeCubit;
   final HomeController homeController;
+  final String uid;
 
   const HomeView({
     Key? key,
     required this.homeCubit,
     required this.homeController,
+    required this.uid,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class _HomeViewState extends State<HomeView>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
   HomeController get homeController => widget.homeController;
-
+  String get uid => widget.uid;
   HomeCubit get homeCubit => widget.homeCubit;
 
   @override
@@ -87,11 +89,13 @@ class _HomeViewState extends State<HomeView>
                       color: Theme.of(context).colorScheme.secondary,
                     ),
                     StreamBuilder<AddressModel>(
-                        stream: homeController.getAddress(),
+                        stream: homeController.getAddress(uid: uid),
                         builder: (context, snapshot) {
                           final address = snapshot.data;
 
                           return CurrentLocation(
+                            isLoading: snapshot.connectionState ==
+                                ConnectionState.waiting,
                             docId: address?.id ?? AppString.textVazio.texto,
                             road: address?.road ?? "Rua dos Bobos",
                             residenceNumber: address?.residenceNumber ?? "0",

@@ -13,6 +13,7 @@ final Map<String, WidgetBuilder> routes = {
       RegisterView(registerCubit: getIt<RegisterAccountCubit>()),
   '/login': (context) => LoginView(loginCubit: getIt<LoginCubit>()),
   '/home': (context) => HomeView(
+        uid: ModalRoute.of(context)!.settings.arguments as String,
         homeCubit: getIt<HomeCubit>(),
         homeController: getIt<HomeController>(),
       ),

@@ -35,7 +35,7 @@ class HomeController {
     await _addressService.postAddress(uid, address);
   }
 
-  Stream<AddressModel> getAddress() {
+  Stream<AddressModel> getAddress({required String uid}) {
     return _addressService.getAddressStream(uid);
   }
 
