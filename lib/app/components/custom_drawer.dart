@@ -3,10 +3,10 @@ import 'package:gourmetexpress/app/utils/images_assets/images_assets.dart';
 import 'package:gourmetexpress/app/utils/strings/home_string.dart';
 
 class CustomDrawer extends StatelessWidget {
-  final Function()? onTap;
+  final Function() onTap;
   const CustomDrawer({
     super.key,
-    this.onTap,
+    required this.onTap,
   });
 
   @override

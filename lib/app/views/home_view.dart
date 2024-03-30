@@ -12,6 +12,7 @@ import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
 import 'package:gourmetexpress/app/cubits/home/home_state.dart';
 import 'package:gourmetexpress/app/models/address_model.dart';
 import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/Enums/food_category.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
@@ -32,7 +33,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, NavigationMixin {
   late final TabController _tabController;
   HomeController get homeController => widget.homeController;
   String get uid => widget.uid;
@@ -69,6 +70,7 @@ class _HomeViewState extends State<HomeView>
         backgroundColor: Theme.of(context).colorScheme.secondary,
         drawer: CustomDrawer(
           onTap: () {
+            goToLoginPage(context, pushAndRemoveUntil: true);
             homeController.signOut();
             homeController.clear();
           },

@@ -22,6 +22,7 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: TabBar(
+        isScrollable: true,
         controller: tabController,
         labelColor: Theme.of(context).colorScheme.inversePrimary,
         unselectedLabelColor: Theme.of(context).colorScheme.primary,
