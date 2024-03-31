@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
 import 'package:gourmetexpress/app/controllers/home_controller.dart';
 import 'package:gourmetexpress/app/controllers/login_controller.dart';
 import 'package:gourmetexpress/app/controllers/register_account_controller.dart';
@@ -8,6 +9,7 @@ import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
 import 'package:gourmetexpress/app/cubits/register_account/register_account_cubit.dart';
 import 'package:gourmetexpress/app/services/firebase_auth/firebase_auth_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/address/address_service.dart';
+import 'package:gourmetexpress/app/services/firestor_service/cart_item/cart_item_service.dart';
 import 'package:gourmetexpress/app/services/food_service/food_service.dart';
 import 'package:gourmetexpress/app/services/local_storage_service/local_storage_service.dart';
 
@@ -34,6 +36,10 @@ void setupServiceLocator() {
     AddressService(),
   );
 
+  getIt.registerSingleton<CartItemService>(
+    CartItemService(),
+  );
+
   getIt.registerFactory<RegisterAccountController>(
     () => RegisterAccountController(
       firebaseAuthService: getIt<FirebaseAuthService>(),
@@ -52,6 +58,13 @@ void setupServiceLocator() {
       foodService: getIt<FoodService>(),
       firebaseAuthService: getIt<FirebaseAuthService>(),
       addressService: getIt<AddressService>(),
+      localStorageService: getIt<LocalStorageService>(),
+    ),
+  );
+
+  getIt.registerFactory(
+    () => FoodDetailsController(
+      cartItemService: getIt<CartItemService>(),
       localStorageService: getIt<LocalStorageService>(),
     ),
   );

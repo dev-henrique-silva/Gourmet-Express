@@ -3,10 +3,11 @@
       "name": "Café Expresso",
       "description": "Café expresso forte e aromático.",
       "imagePath": "assets/img/mocks/drinks/drink_espresso.png",
-      "price": 2.99,
+      "price": 3.99,
       "category": "bebidas",
       "availableAddons": [
-        {"name": "Leite Extra", "price": 0.50},
+        {"name": "Leite extra", "price": 0.50},
+        {"name": "Chantilly", "price": 1.50},
         {"name": "Açúcar", "price": 0.00}
       ]
     },
@@ -17,6 +18,7 @@
       "price": 2.49,
       "category": "bebidas",
       "availableAddons": [
+        {"name": "Açúcar", "price": 0.00},
         {"name": "Mel", "price": 0.50},
         {"name": "Limão", "price": 0.50}
       ]
@@ -25,11 +27,12 @@
       "name": "Suco de Laranja",
       "description": "Suco de laranja fresco e natural.",
       "imagePath": "assets/img/mocks/drinks/drink_orange_juice.png",
-      "price": 3.99,
+      "price": 5.99,
       "category": "bebidas",
       "availableAddons": [
         {"name": "Gelo", "price": 0.00},
-        {"name": "Açúcar", "price": 0.00}
+        {"name": "Açúcar", "price": 0.00},
+        {"name": "Raspas de limão", "price": 0.00}
       ]
     },
     {
@@ -40,6 +43,7 @@
       "category": "bebidas",
       "availableAddons": [
         {"name": "Açúcar", "price": 0.00},
+        {"name": "Chantilly", "price": 1.50},
         {"name": "Canela", "price": 0.50}
       ]
     },
@@ -50,6 +54,7 @@
       "price": 2.49,
       "category": "bebidas",
       "availableAddons": [
+        {"name": "Açúcar", "price": 0.00},
         {"name": "Mel", "price": 0.50},
         {"name": "Limão", "price": 0.50}
       ]
@@ -58,10 +63,12 @@
       "name": "Coca-Cola",
       "description": "Refrigerante de cola clássico e refrescante.",
       "imagePath": "assets/img/mocks/drinks/drink_coca_cola.png",
-      "price": 2.99,
+      "price": 4.99,
       "category": "bebidas",
       "availableAddons": [
-        {"name": "Gelo", "price": 0.00}
+        {"name": "Gelo", "price": 0.00},
+        {"name": "Limão", "price": 0.50},
+        {"name": "Limão siciliano", "price": 1.00}
       ]
     },
     {
@@ -71,17 +78,20 @@
       "price": 1.99,
       "category": "bebidas",
       "availableAddons": [
-        {"name": "Gelo", "price": 0.00}
+        {"name": "Gelo", "price": 0.00},
+        {"name": "Gotas de limão", "price": 0.00},
+        {"name": "Folhas de hortelã", "price": 0.50}
       ]
     },
     {
       "name": "Smoothie de Morango",
       "description": "Smoothie de morango fresco e saudável.",
       "imagePath": "assets/img/mocks/drinks/drink_strawberry_smoothie.png",
-      "price": 4.99,
+      "price": 6.99,
       "category": "bebidas",
       "availableAddons": [
-        {"name": "Proteína em Pó", "price": 1.50},
+        {"name": "Calda de morango", "price": 1.50},
+        {"name": "Proteína em pó", "price": 1.50},
         {"name": "Chia", "price": 1.00}
       ]
     }

@@ -14,12 +14,12 @@ class HomeController {
   final IAddressService _addressService;
   final ILocalStorageService _localStorageService;
 
-  HomeController(
-      {required IFoodService foodService,
-      required IFirebaseAuthService firebaseAuthService,
-      required AddressService addressService,
-      required LocalStorageService localStorageService})
-      : _foodService = foodService,
+  HomeController({
+    required IFoodService foodService,
+    required IFirebaseAuthService firebaseAuthService,
+    required AddressService addressService,
+    required LocalStorageService localStorageService,
+  })  : _foodService = foodService,
         _firebaseAuthService = firebaseAuthService,
         _addressService = addressService,
         _localStorageService = localStorageService;
@@ -43,19 +43,19 @@ class HomeController {
     await _addressService.putAddress(uid, address);
   }
 
-  Future<List<Food>> getBurgers() async {
+  Future<List<FoodModel>> getBurgers() async {
     return await _foodService.getBurgers();
   }
 
-  Future<List<Food>> getSalads() async {
+  Future<List<FoodModel>> getSalads() async {
     return await _foodService.getSalads();
   }
 
-  Future<List<Food>> getDesserts() async {
+  Future<List<FoodModel>> getDesserts() async {
     return await _foodService.getDesserts();
   }
 
-  Future<List<Food>> getDrinks() async {
+  Future<List<FoodModel>> getDrinks() async {
     return await _foodService.getDrinks();
   }
 

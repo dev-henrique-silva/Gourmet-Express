@@ -6,7 +6,7 @@
       "price": 17.99,
       "category": "saladas",
       "availableAddons": [
-        {"name": "Ovo Cozido", "price": 1.50},
+        {"name": "Ovo cozido", "price": 1.50},
         {"name": "Milho", "price": 1.00},
         {"name": "Pimentão", "price": 1.50}
       ]
@@ -19,7 +19,7 @@
       "category": "saladas",
       "availableAddons": [
         {"name": "Bacon", "price": 2.50},
-        {"name": "Queijo Parmesão", "price": 2.00},
+        {"name": "Queijo parmesão", "price": 2.00},
         {"name": "Azeitonas", "price": 1.50}
       ]
     },
@@ -44,7 +44,7 @@
       "availableAddons": [
         {"name": "Azeitonas", "price": 1.50},
         {"name": "Pimentão", "price": 1.50},
-        {"name": "Frango Grelhado", "price": 3.00}
+        {"name": "Frango grelhado", "price": 3.00}
       ]
     },
     {
@@ -54,8 +54,8 @@
       "price": 19.99,
       "category": "saladas",
       "availableAddons": [
-        {"name": "Frango Grelhado", "price": 3.00},
-        {"name": "Queijo Feta", "price": 2.50},
+        {"name": "Frango grelhado", "price": 3.00},
+        {"name": "Queijo feta", "price": 2.50},
         {"name": "Abacate", "price": 2.00}
       ]
     },
@@ -66,9 +66,9 @@
       "price": 15.99,
       "category": "saladas",
       "availableAddons": [
-        {"name": "Queijo de Cabra", "price": 3.00},
+        {"name": "Queijo de cabra", "price": 3.00},
         {"name": "Maçã", "price": 1.50},
-        {"name": "Frango Grelhado", "price": 3.00}
+        {"name": "Frango grelhado", "price": 3.00}
       ]
     },
     {
@@ -78,9 +78,9 @@
       "price": 15.99,
       "category": "saladas",
       "availableAddons": [
-        {"name": "Frango Grelhado", "price": 3.00},
+        {"name": "Frango grelhado", "price": 3.00},
         {"name": "Bacon", "price": 2.50},
-        {"name": "Ovo Cozido", "price": 1.50}
+        {"name": "Ovo cozido", "price": 1.50}
       ]
     },
     {
@@ -90,8 +90,8 @@
       "price": 16.99,
       "category": "saladas",
       "availableAddons": [
-        {"name": "Frango Grelhado", "price": 3.00},
-        {"name": "Peito de Peru", "price": 3.00},
+        {"name": "Frango grelhado", "price": 3.00},
+        {"name": "Peito de peru", "price": 3.00},
         {"name": "Pimentão", "price": 1.50}
       ]
     }

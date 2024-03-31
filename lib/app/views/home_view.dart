@@ -133,7 +133,7 @@ class _HomeViewState extends State<HomeView>
 
   List<Widget> _getFoodInThisCategory(HomeSuccess state) {
     return FoodCategory.values.map((category) {
-      final List<Food> categoryMenu = state.foods
+      final List<FoodModel> categoryMenu = state.foods
           .where((food) => food.category.contains(category.name))
           .toList();
 
@@ -142,9 +142,11 @@ class _HomeViewState extends State<HomeView>
         itemCount: categoryMenu.length,
         itemBuilder: (context, index) {
           final food = categoryMenu[index];
-          return CustomTile(
-            food: food,
-            onTap: () {},
+          return InkWell(
+            onTap: () => goToFoodDetailsPage(context, uid, food: food),
+            child: CustomTile(
+              food: food,
+            ),
           );
         },
       );

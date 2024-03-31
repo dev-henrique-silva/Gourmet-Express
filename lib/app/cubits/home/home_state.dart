@@ -13,7 +13,7 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeSuccess extends HomeState {
-  final List<Food> foods;
+  final List<FoodModel> foods;
 
   const HomeSuccess({
     required this.foods,

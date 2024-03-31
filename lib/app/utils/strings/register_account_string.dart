@@ -1,4 +1,4 @@
-enum RegisterString {
+enum RegisterAccountString {
   crieSuaContaEAproveite('Crie sua conta e aproveite!'),
   confirarSenha('Confirmar Senha'),
   criarConta('Criar Conta'),
@@ -7,6 +7,6 @@ enum RegisterString {
   contaCriadaComSucesso('Conta criada com sucesso!'),
   ;
 
-  const RegisterString(this.texto);
+  const RegisterAccountString(this.texto);
   final String texto;
 }

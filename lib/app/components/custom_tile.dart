@@ -4,7 +4,7 @@ import 'package:gourmetexpress/app/models/food.dart';
 import 'package:gourmetexpress/app/utils/extensions/double_extensions.dart';
 
 class CustomTile extends StatelessWidget {
-  final Food food;
+  final FoodModel food;
   final void Function()? onTap;
 
   const CustomTile({

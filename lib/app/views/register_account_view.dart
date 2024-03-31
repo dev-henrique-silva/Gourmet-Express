@@ -8,21 +8,22 @@ import 'package:gourmetexpress/app/cubits/register_account/register_account_cubi
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/images_assets/images_assets.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
-import 'package:gourmetexpress/app/utils/strings/register_string.dart';
+import 'package:gourmetexpress/app/utils/strings/register_account_string.dart';
 
-class RegisterView extends StatefulWidget {
+class RegisterAccountView extends StatefulWidget {
   final RegisterAccountCubit registerCubit;
 
-  const RegisterView({
+  const RegisterAccountView({
     super.key,
     required this.registerCubit,
   });
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<RegisterAccountView> createState() => _RegisterAccountViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> with NavigationMixin {
+class _RegisterAccountViewState extends State<RegisterAccountView>
+    with NavigationMixin {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmController = TextEditingController();
@@ -49,7 +50,7 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
               () => FlushbarSuccessWidget(
                 context: context,
                 title: AppString.sucesso.texto,
-                message: RegisterString.contaCriadaComSucesso.texto,
+                message: RegisterAccountString.contaCriadaComSucesso.texto,
               ),
             );
 
@@ -78,7 +79,7 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      RegisterString.crieSuaContaEAproveite.texto,
+                      RegisterAccountString.crieSuaContaEAproveite.texto,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.inversePrimary,
                         fontSize: 16,
@@ -99,12 +100,12 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
                     const SizedBox(height: 10),
                     CustomTextField(
                       controller: confirmController,
-                      hintText: RegisterString.confirarSenha.texto,
+                      hintText: RegisterAccountString.confirarSenha.texto,
                       obscureText: true,
                     ),
                     const SizedBox(height: 10),
                     CustomButton(
-                      text: RegisterString.criarConta.texto,
+                      text: RegisterAccountString.criarConta.texto,
                       isLoading: state is RegisterLoading,
                       onPressed: () {
                         registerCubit.registerAccount(
@@ -118,7 +119,7 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          RegisterString.jaPossuiUmaConta.texto,
+                          RegisterAccountString.jaPossuiUmaConta.texto,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.inversePrimary,
                           ),
@@ -127,7 +128,7 @@ class _RegisterViewState extends State<RegisterView> with NavigationMixin {
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
                           child: Text(
-                            RegisterString.voltarParaOLogin.texto,
+                            RegisterAccountString.voltarParaOLogin.texto,
                             style: TextStyle(
                               color:
                                   Theme.of(context).colorScheme.inversePrimary,

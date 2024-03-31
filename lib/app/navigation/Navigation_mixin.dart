@@ -22,4 +22,12 @@ mixin NavigationMixin {
     navigationCustom.navigate(context, '/home',
         replace: replace, arguments: uid);
   }
+
+  void goToFoodDetailsPage(
+    BuildContext context,
+    String? uid, {
+    required dynamic food,
+  }) {
+    navigationCustom.navigate(context, '/food_details', arguments: food);
+  }
 }

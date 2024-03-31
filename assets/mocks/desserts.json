@@ -6,8 +6,9 @@
       "price": 14.99,
       "category": "sobremesas",
       "availableAddons": [
-        {"name": "Sorvete de Baunilha", "price": 2.00},
-        {"name": "Chantilly", "price": 1.50}
+        {"name": "Sorvete de baunilha", "price": 2.00},
+        {"name": "Chantilly", "price": 1.50},
+        {"name": "Calda de caramelho", "price": 1.50}
       ]
     },
     {
@@ -18,7 +19,8 @@
       "category": "sobremesas",
       "availableAddons": [
         {"name": "Chantilly", "price": 1.50},
-        {"name": "Calda de Chocolate", "price": 2.00}
+        {"name": "Calda de chocolate", "price": 2.00},
+        {"name": "raspas de chocolate", "price": 2.50}
       ]
     },
     {
@@ -28,7 +30,8 @@
       "price": 14.99,
       "category": "sobremesas",
       "availableAddons": [
-        {"name": "Sorvete de Baunilha", "price": 2.00},
+        {"name": "Calda de chocolate", "price": 2.00},
+        {"name": "Sorvete de baunilha", "price": 2.00},
         {"name": "Chantilly", "price": 1.50}
       ]
     },
@@ -39,7 +42,8 @@
       "price": 12.99,
       "category": "sobremesas",
       "availableAddons": [
-        {"name": "Calda de Chocolate", "price": 1.50},
+        {"name": "Calda de chocolate", "price": 1.50},
+        {"name": "Calda de caramelho", "price": 1.50},
         {"name": "Nozes", "price": 1.50}
       ]
     },
@@ -51,7 +55,8 @@
       "category": "sobremesas",
       "availableAddons": [
         {"name": "Calda de banana", "price": 1.50},
-        {"name": "Calda de morango", "price": 1.50}
+        {"name": "Calda de morango", "price": 1.50},
+        {"name": "Calda de caramelho", "price": 1.50}
       ]
     },
     {
@@ -62,7 +67,8 @@
       "category": "sobremesas",
       "availableAddons": [
         {"name": "Calda de chocolate", "price": 1.50},
-        {"name": "raspasa de chocolate", "price": 2.50}
+        {"name": "raspas de chocolate", "price": 2.50},
+        {"name": "Nozes", "price": 1.50}
       ]
     },
     {
@@ -72,7 +78,9 @@
       "price": 14.99,
       "category": "sobremesas",
       "availableAddons": [
-        {"name": "Chantilly", "price": 1.50}
+        {"name": "Chantilly", "price": 1.50},
+        {"name": "Calda de chocolate", "price": 1.50},
+        {"name": "Calda de caramelho", "price": 1.50}
       ]
     },
     {
@@ -82,7 +90,8 @@
       "price": 15.99,
       "category": "sobremesas",
       "availableAddons": [
-        {"name": "raspasa de chocolate", "price": 2.50},
+        {"name": "Calda de chocolate", "price": 1.50},
+        {"name": "raspas de chocolate", "price": 2.50},
         {"name": "Chantilly", "price": 1.50}
       ]
     }
