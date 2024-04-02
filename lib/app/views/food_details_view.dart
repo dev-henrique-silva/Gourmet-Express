@@ -3,7 +3,7 @@ import 'package:gourmetexpress/app/components/custom_button.dart';
 import 'package:gourmetexpress/app/components/custom_scroll_behavior.dart';
 import 'package:gourmetexpress/app/components/description_of_ingredients.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/utils/strings/food_details_string.dart';
 
 class FoodDetailsView extends StatefulWidget {
@@ -32,6 +32,7 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
   @override
   void didChangeDependencies() {
     _height = MediaQuery.of(context).size.width * 1.0;
+    controller.getUidFromLocalStorage();
 
     super.didChangeDependencies();
   }
@@ -73,9 +74,11 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
                               controller.postCartItem(
                                 food: food,
                                 selectedAddons: _selectedAvailableAddons.value
-                                    .map((e) => food.availableAddons[
-                                        _selectedAvailableAddons.value
-                                            .indexOf(e)])
+                                    .asMap()
+                                    .entries
+                                    .where((entry) => entry.value)
+                                    .map((entry) =>
+                                        food.availableAddons[entry.key])
                                     .toList(),
                               );
                             },

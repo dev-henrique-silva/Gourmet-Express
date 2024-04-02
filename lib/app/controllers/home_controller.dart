@@ -1,5 +1,5 @@
 import 'package:gourmetexpress/app/models/address_model.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/services/firebase_auth/i_firebase_auth_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/address/address_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/address/i_address_service.dart';

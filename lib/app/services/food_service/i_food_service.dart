@@ -1,4 +1,4 @@
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 
 abstract class IFoodService {
   Future<List<FoodModel>> getBurgers();

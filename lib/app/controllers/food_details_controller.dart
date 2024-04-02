@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gourmetexpress/app/models/addon_model.dart';
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/cart_item_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/i_cart_item_service.dart';
 import 'package:gourmetexpress/app/services/local_storage_service/i_local_storage_service.dart';
@@ -27,13 +27,13 @@ class FoodDetailsController {
 
   Future<void> postCartItem({
     required FoodModel food,
-    required List<AddonModel> selectedAddons,
+    required List<AddonModel?> selectedAddons,
   }) async {
     await _cartItemService.postCartItem(
       uid,
       CartItemModel(
         food: food,
-        selectedAddons: selectedAddons,
+        selectedAddons: selectedAddons as List<AddonModel>,
         timestamp: Timestamp.now(),
       ),
     );

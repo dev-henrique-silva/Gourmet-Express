@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/components/placeholder_image.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/utils/extensions/double_extensions.dart';
 
 class CustomTile extends StatelessWidget {

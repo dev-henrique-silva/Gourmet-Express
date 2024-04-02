@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gourmetexpress/app/models/addon_model.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 
 class CartItemModel {
   final String? id;
@@ -32,10 +32,10 @@ class CartItemModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'food': food,
+      'food': food.toMap(),
       'quantity': quantity,
       'totalPrice': totalPrice,
-      'selectedAddons': selectedAddons,
+      'selectedAddons': selectedAddons.map((addon) => addon.toMap()).toList(),
       'timestamp': timestamp,
     };
   }

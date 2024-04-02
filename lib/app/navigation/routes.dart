@@ -4,7 +4,7 @@ import 'package:gourmetexpress/app/controllers/home_controller.dart';
 import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
 import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
 import 'package:gourmetexpress/app/cubits/register_account/register_account_cubit.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/views/food_details_view.dart';
 import 'package:gourmetexpress/app/views/home_view.dart';
 import 'package:gourmetexpress/app/views/login_view.dart';

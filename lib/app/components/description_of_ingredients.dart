@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/models/addon_model.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/utils/extensions/double_extensions.dart';
 import 'package:gourmetexpress/app/utils/strings/food_details_string.dart';
 

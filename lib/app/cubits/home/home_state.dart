@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 
 abstract class HomeState extends Equatable {
   const HomeState();

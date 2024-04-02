@@ -42,4 +42,15 @@ class FoodModel {
           map['availableAddons'].map((x) => AddonModel.fromMap(x))),
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'description': description,
+      'imagePath': imagePath,
+      'price': price,
+      'category': category,
+      'availableAddons': availableAddons.map((addon) => addon.toMap()).toList(),
+    };
+  }
 }

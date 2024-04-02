@@ -20,4 +20,11 @@ class AddonModel {
       price: map['price'],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'price': price,
+    };
+  }
 }

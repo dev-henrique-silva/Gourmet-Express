@@ -11,7 +11,7 @@ import 'package:gourmetexpress/app/controllers/home_controller.dart';
 import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
 import 'package:gourmetexpress/app/cubits/home/home_state.dart';
 import 'package:gourmetexpress/app/models/address_model.dart';
-import 'package:gourmetexpress/app/models/food.dart';
+import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/Enums/food_category.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
