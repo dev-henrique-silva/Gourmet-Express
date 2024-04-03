@@ -12,14 +12,10 @@ class CartItemService implements ICartItemService {
   }
 
   @override
-  Stream<List<CartItemModel>> getACartItemStream(String uid) {
-    return notesCollection
-        .doc(uid)
-        .collection('cartItem')
-        .orderBy('timestamp', descending: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((document) => CartItemModel.fromSnapshot(document))
+  Stream<List<CartItemModel>> getCartItemStream(String uid) {
+    return notesCollection.doc(uid).collection('cartItem').snapshots().map(
+        (snapshot) => snapshot.docs
+            .map((doc) => CartItemModel.fromMap(doc.data(), doc.id))
             .toList());
   }
 
@@ -32,5 +28,26 @@ class CartItemService implements ICartItemService {
         .update(
           updatedcartItem.toMap(),
         );
+  }
+
+  @override
+  Future<void> deleteCartItemById(String uid, String cartItemId) async {
+    await notesCollection
+        .doc(uid)
+        .collection('cartItem')
+        .doc(cartItemId)
+        .delete();
+  }
+
+  @override
+  Future<void> deleteAllCartItems(String uid) async {
+    QuerySnapshot cartItemsSnapshot =
+        await notesCollection.doc(uid).collection('cartItem').get();
+
+    List<DocumentSnapshot> cartItems = cartItemsSnapshot.docs;
+
+    for (DocumentSnapshot cartItem in cartItems) {
+      await cartItem.reference.delete();
+    }
   }
 }

@@ -30,4 +30,9 @@ mixin NavigationMixin {
   }) {
     navigationCustom.navigate(context, '/food_details', arguments: food);
   }
+
+  void goToCartPage(BuildContext context, String? uid, {bool replace = false}) {
+    navigationCustom.navigate(context, '/cart',
+        arguments: uid, replace: replace);
+  }
 }

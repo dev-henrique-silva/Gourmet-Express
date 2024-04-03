@@ -1,11 +1,11 @@
 import 'package:gourmetexpress/app/models/address_model.dart';
+import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/services/firebase_auth/i_firebase_auth_service.dart';
-import 'package:gourmetexpress/app/services/firestor_service/address/address_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/address/i_address_service.dart';
+import 'package:gourmetexpress/app/services/firestor_service/cart_item/i_cart_item_service.dart';
 import 'package:gourmetexpress/app/services/food_service/i_food_service.dart';
 import 'package:gourmetexpress/app/services/local_storage_service/i_local_storage_service.dart';
-import 'package:gourmetexpress/app/services/local_storage_service/local_storage_service.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class HomeController {
@@ -13,16 +13,19 @@ class HomeController {
   final IFirebaseAuthService _firebaseAuthService;
   final IAddressService _addressService;
   final ILocalStorageService _localStorageService;
+  final ICartItemService _cartItemService;
 
   HomeController({
     required IFoodService foodService,
     required IFirebaseAuthService firebaseAuthService,
-    required AddressService addressService,
-    required LocalStorageService localStorageService,
+    required IAddressService addressService,
+    required ILocalStorageService localStorageService,
+    required ICartItemService cartItemService,
   })  : _foodService = foodService,
         _firebaseAuthService = firebaseAuthService,
         _addressService = addressService,
-        _localStorageService = localStorageService;
+        _localStorageService = localStorageService,
+        _cartItemService = cartItemService;
 
   late final String uid;
 
@@ -57,6 +60,10 @@ class HomeController {
 
   Future<List<FoodModel>> getDrinks() async {
     return await _foodService.getDrinks();
+  }
+
+  Stream<List<CartItemModel>> getCartItemStream({required String uid}) {
+    return _cartItemService.getCartItemStream(uid);
   }
 
   Future<void> signOut() async {

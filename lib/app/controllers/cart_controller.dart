@@ -1,18 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gourmetexpress/app/models/addon_model.dart';
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
-import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/cart_item_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/i_cart_item_service.dart';
 import 'package:gourmetexpress/app/services/local_storage_service/i_local_storage_service.dart';
 import 'package:gourmetexpress/app/services/local_storage_service/local_storage_service.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
-class FoodDetailsController {
+class CartController {
   final ICartItemService _cartItemService;
   final ILocalStorageService _localStorageService;
 
-  FoodDetailsController({
+  CartController({
     required CartItemService cartItemService,
     required LocalStorageService localStorageService,
   })  : _cartItemService = cartItemService,
@@ -25,28 +22,24 @@ class FoodDetailsController {
         AppString.textVazio.texto;
   }
 
-  Future<void> postCartItem({
-    required FoodModel food,
-    required List<AddonModel?> selectedAddons,
-  }) async {
-    await _cartItemService.postCartItem(
-      uid,
-      CartItemModel(
-        food: food,
-        selectedAddons: selectedAddons as List<AddonModel>,
-        timestamp: Timestamp.now(),
-      ),
-    );
-  }
-
-  Stream<List<CartItemModel>> getACartItemStream({required String uid}) {
+  Stream<List<CartItemModel>> getCartItemStream({required String uid}) {
     return _cartItemService.getCartItemStream(uid);
   }
 
   Future<void> putCartItem({
-    required String uid,
     required CartItemModel updatedCartItem,
   }) async {
     await _cartItemService.putCartItem(uid, updatedCartItem);
+  }
+
+  Future<void> deleteCartItemById({
+    required String uid,
+    required String itemId,
+  }) async {
+    await _cartItemService.deleteCartItemById(uid, itemId);
+  }
+
+  Future<void> deleteAllCartItems({required String uid}) async {
+    await _cartItemService.deleteAllCartItems(uid);
   }
 }

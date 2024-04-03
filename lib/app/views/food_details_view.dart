@@ -81,6 +81,8 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
                                         food.availableAddons[entry.key])
                                     .toList(),
                               );
+
+                              Navigator.pop(context);
                             },
                           ),
                           CustomButton(

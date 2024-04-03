@@ -9,6 +9,7 @@ enum HomeString {
   bairro('Bairro'),
   home('Home'),
   meusPedidos('Meus Pedidos'),
+  seuCarrinhoEstaVazio('Seu carrinho está vazio'),
   contato('Contato'),
   sair('Sair'),
   ;

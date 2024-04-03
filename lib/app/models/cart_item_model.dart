@@ -5,7 +5,7 @@ import 'package:gourmetexpress/app/models/food_model.dart';
 class CartItemModel {
   final String? id;
   final FoodModel food;
-  final double quantity;
+  int quantity;
   final double totalPrice;
   final List<AddonModel> selectedAddons;
   final Timestamp timestamp;
@@ -18,15 +18,29 @@ class CartItemModel {
     required this.timestamp,
   });
 
-  factory CartItemModel.fromSnapshot(DocumentSnapshot snapshot) {
+  factory CartItemModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    final data = snapshot.data()!;
     return CartItemModel(
-      id: snapshot.id,
-      food: snapshot['food'],
-      quantity: snapshot['quantity'],
-      totalPrice: snapshot['totalPrice'],
+      id: data['id'] ?? snapshot.id,
+      food: data['food'],
+      quantity: data['quantity'],
+      totalPrice: data['totalPrice'],
       selectedAddons: List<AddonModel>.from(
-          snapshot['availableAddons'].snapshot((x) => AddonModel.fromMap(x))),
-      timestamp: snapshot['timestamp'],
+          data['availableAddons'].data((x) => AddonModel.fromMap(x))),
+      timestamp: data['timestamp'],
+    );
+  }
+
+  factory CartItemModel.fromMap(Map<String, dynamic> map, String id) {
+    return CartItemModel(
+      id: id,
+      food: FoodModel.fromMap(map['food']),
+      quantity: map['quantity'],
+      totalPrice: map['totalPrice'],
+      selectedAddons: List<AddonModel>.from(
+          map['selectedAddons'].map((addon) => AddonModel.fromMap(addon))),
+      timestamp: map['timestamp'],
     );
   }
 

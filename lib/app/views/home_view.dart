@@ -82,6 +82,9 @@ class _HomeViewState extends State<HomeView>
                 title: CustomTabBar(
                   tabController: _tabController,
                 ),
+                onPressed: () => goToCartPage(context, uid),
+                uid: uid,
+                homeController: homeController,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
