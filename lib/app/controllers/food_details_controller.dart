@@ -34,6 +34,7 @@ class FoodDetailsController {
       CartItemModel(
         food: food,
         selectedAddons: selectedAddons as List<AddonModel>,
+        totalPrice: calculateTotalPrice(food.price, selectedAddons),
         timestamp: Timestamp.now(),
       ),
     );
@@ -48,5 +49,18 @@ class FoodDetailsController {
     required CartItemModel updatedCartItem,
   }) async {
     await _cartItemService.putCartItem(uid, updatedCartItem);
+  }
+
+  double calculateTotalPrice(
+      double foodPrice, List<AddonModel?> selectedAddons) {
+    double addonPrice = 0.0;
+
+    for (var addon in selectedAddons) {
+      addonPrice += addon!.price;
+    }
+
+    double totalPrice = (foodPrice + addonPrice);
+
+    return totalPrice;
   }
 }

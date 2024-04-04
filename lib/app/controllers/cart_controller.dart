@@ -42,4 +42,32 @@ class CartController {
   Future<void> deleteAllCartItems({required String uid}) async {
     await _cartItemService.deleteAllCartItems(uid);
   }
+
+  double sumTotalValue(CartItemModel cartItem) {
+    double foodPrice = cartItem.food.price;
+    double addonPrice = 0.0;
+    int quantity = cartItem.quantity;
+
+    for (var addon in cartItem.selectedAddons) {
+      addonPrice += addon.price;
+    }
+
+    cartItem.totalPrice = (foodPrice + addonPrice) * quantity;
+
+    return cartItem.totalPrice;
+  }
+
+  double subtrationTotalValue(CartItemModel cartItem) {
+    double foodPrice = cartItem.food.price;
+    double addonPrice = 0.0;
+
+    for (var addon in cartItem.selectedAddons) {
+      addonPrice += addon.price;
+    }
+
+    double result = (cartItem.totalPrice - (foodPrice + addonPrice));
+    cartItem.totalPrice = double.parse(result.toStringAsFixed(2));
+
+    return cartItem.totalPrice;
+  }
 }

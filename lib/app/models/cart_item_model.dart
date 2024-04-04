@@ -6,14 +6,14 @@ class CartItemModel {
   final String? id;
   final FoodModel food;
   int quantity;
-  final double totalPrice;
+  double totalPrice;
   final List<AddonModel> selectedAddons;
   final Timestamp timestamp;
   CartItemModel({
     this.id,
     required this.food,
     required this.selectedAddons,
-    this.quantity = 0,
+    this.quantity = 1,
     this.totalPrice = 0.0,
     required this.timestamp,
   });
