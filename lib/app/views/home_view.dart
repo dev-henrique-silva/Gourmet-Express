@@ -42,7 +42,6 @@ class _HomeViewState extends State<HomeView>
   @override
   void initState() {
     super.initState();
-    homeController.getUidFromLocalStorage();
     _tabController = TabController(
       length: FoodCategory.values.length,
       vsync: this,
@@ -72,7 +71,6 @@ class _HomeViewState extends State<HomeView>
           onTap: () {
             goToLoginPage(context, pushAndRemoveUntil: true);
             homeController.signOut();
-            homeController.clear();
           },
         ),
         body: NestedScrollView(
@@ -99,6 +97,7 @@ class _HomeViewState extends State<HomeView>
                           final address = snapshot.data;
 
                           return CurrentLocation(
+                            uid: uid,
                             isLoading: snapshot.connectionState ==
                                 ConnectionState.waiting,
                             docId: address?.id ?? AppString.textVazio.texto,
@@ -146,7 +145,7 @@ class _HomeViewState extends State<HomeView>
         itemBuilder: (context, index) {
           final food = categoryMenu[index];
           return InkWell(
-            onTap: () => goToFoodDetailsPage(context, uid, food: food),
+            onTap: () => goToFoodDetailsPage(context, uid: uid, food: food),
             child: CustomTile(
               food: food,
             ),

@@ -1,17 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gourmetexpress/app/services/firebase_auth/i_firebase_auth_service.dart';
-import 'package:gourmetexpress/app/services/local_storage_service/i_local_storage_service.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class LoginController {
   final IFirebaseAuthService _firebaseAuthService;
-  final ILocalStorageService _localStorageService;
 
   LoginController({
     required IFirebaseAuthService firebaseAuthService,
-    required ILocalStorageService localStorageService,
-  })  : _firebaseAuthService = firebaseAuthService,
-        _localStorageService = localStorageService;
+  }) : _firebaseAuthService = firebaseAuthService;
 
   Future<String> login({
     required String email,
@@ -26,7 +22,6 @@ class LoginController {
       );
 
       if (user != null) {
-        await _localStorageService.saveUidToLocalStorage(user.uid);
         return user.uid;
       } else {
         return AppString.textVazio.texto;

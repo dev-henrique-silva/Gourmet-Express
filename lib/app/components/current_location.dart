@@ -5,14 +5,17 @@ import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 import 'package:gourmetexpress/app/utils/strings/home_string.dart';
 
 class CurrentLocation extends StatefulWidget {
+  final String uid;
   final String docId;
   final String road;
   final String residenceNumber;
   final String district;
   final HomeController homeController;
   final bool isLoading;
+
   const CurrentLocation({
     Key? key,
+    required this.uid,
     required this.docId,
     required this.road,
     required this.residenceNumber,
@@ -31,6 +34,7 @@ class _CurrentLocationState extends State<CurrentLocation> {
       TextEditingController();
   late final TextEditingController districtController = TextEditingController();
 
+  String get uid => widget.uid;
   String get roadAndNumber => "${widget.road}, ${widget.residenceNumber}";
   HomeController get homeController => widget.homeController;
   String get docId => widget.docId;
@@ -83,7 +87,8 @@ class _CurrentLocationState extends State<CurrentLocation> {
               onPressed: () {
                 if (docId.isEmpty) {
                   homeController.postAddress(
-                    AddressModel(
+                    uid: uid,
+                    address: AddressModel(
                       road: roadController.text,
                       residenceNumber: residenceNumberController.text,
                       district: districtController.text,
@@ -91,7 +96,8 @@ class _CurrentLocationState extends State<CurrentLocation> {
                   );
                 } else {
                   homeController.putAddress(
-                    AddressModel(
+                    uid: uid,
+                    address: AddressModel(
                       id: docId,
                       road: roadController.text,
                       residenceNumber: residenceNumberController.text,

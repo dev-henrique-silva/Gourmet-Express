@@ -1,32 +1,20 @@
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/cart_item_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/i_cart_item_service.dart';
-import 'package:gourmetexpress/app/services/local_storage_service/i_local_storage_service.dart';
-import 'package:gourmetexpress/app/services/local_storage_service/local_storage_service.dart';
-import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class CartController {
   final ICartItemService _cartItemService;
-  final ILocalStorageService _localStorageService;
 
   CartController({
     required CartItemService cartItemService,
-    required LocalStorageService localStorageService,
-  })  : _cartItemService = cartItemService,
-        _localStorageService = localStorageService;
-
-  late final String uid;
-
-  Future<void> getUidFromLocalStorage() async {
-    uid = await _localStorageService.getUidFromLocalStorage() ??
-        AppString.textVazio.texto;
-  }
+  }) : _cartItemService = cartItemService;
 
   Stream<List<CartItemModel>> getCartItemStream({required String uid}) {
     return _cartItemService.getCartItemStream(uid);
   }
 
   Future<void> putCartItem({
+    required String uid,
     required CartItemModel updatedCartItem,
   }) async {
     await _cartItemService.putCartItem(uid, updatedCartItem);

@@ -5,36 +5,27 @@ import 'package:gourmetexpress/app/services/firebase_auth/i_firebase_auth_servic
 import 'package:gourmetexpress/app/services/firestor_service/address/i_address_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/i_cart_item_service.dart';
 import 'package:gourmetexpress/app/services/food_service/i_food_service.dart';
-import 'package:gourmetexpress/app/services/local_storage_service/i_local_storage_service.dart';
-import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class HomeController {
   final IFoodService _foodService;
   final IFirebaseAuthService _firebaseAuthService;
   final IAddressService _addressService;
-  final ILocalStorageService _localStorageService;
   final ICartItemService _cartItemService;
 
   HomeController({
     required IFoodService foodService,
     required IFirebaseAuthService firebaseAuthService,
     required IAddressService addressService,
-    required ILocalStorageService localStorageService,
     required ICartItemService cartItemService,
   })  : _foodService = foodService,
         _firebaseAuthService = firebaseAuthService,
         _addressService = addressService,
-        _localStorageService = localStorageService,
         _cartItemService = cartItemService;
 
-  late final String uid;
-
-  Future<void> getUidFromLocalStorage() async {
-    uid = await _localStorageService.getUidFromLocalStorage() ??
-        AppString.textVazio.texto;
-  }
-
-  Future<void> postAddress(AddressModel address) async {
+  Future<void> postAddress({
+    required String uid,
+    required AddressModel address,
+  }) async {
     await _addressService.postAddress(uid, address);
   }
 
@@ -42,7 +33,10 @@ class HomeController {
     return _addressService.getAddressStream(uid);
   }
 
-  Future<void> putAddress(AddressModel address) async {
+  Future<void> putAddress({
+    required String uid,
+    required AddressModel address,
+  }) async {
     await _addressService.putAddress(uid, address);
   }
 
@@ -68,9 +62,5 @@ class HomeController {
 
   Future<void> signOut() async {
     await _firebaseAuthService.signOut();
-  }
-
-  Future<void> clear() async {
-    await _localStorageService.clear();
   }
 }

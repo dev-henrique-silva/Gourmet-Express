@@ -24,12 +24,6 @@ class _CartViewState extends State<CartView> {
   CartController get cartController => widget.cartController;
 
   @override
-  void initState() {
-    cartController.getUidFromLocalStorage();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<CartItemModel>>(
       stream: cartController.getCartItemStream(uid: uid),
@@ -105,6 +99,7 @@ class _CartViewState extends State<CartView> {
                               final cartItem = snapshot.data![index];
                               return CustomCartTile(
                                 cartItem: cartItem,
+                                uid: uid,
                                 onDelete: () =>
                                     cartController.deleteCartItemById(
                                   uid: uid,
