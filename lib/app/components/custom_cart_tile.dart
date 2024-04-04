@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gourmetexpress/app/components/buttons_addons.dart';
 import 'package:gourmetexpress/app/components/quantity_selector.dart';
+import 'package:gourmetexpress/app/components/total_value.dart';
 import 'package:gourmetexpress/app/controllers/cart_controller.dart';
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
@@ -47,6 +49,12 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
     super.didChangeDependencies();
   }
 
+  @override
+  void didUpdateWidget(covariant CustomCartTile oldWidget) {
+    sizeCard(context);
+    super.didUpdateWidget(oldWidget);
+  }
+
   void sizeCard(BuildContext context) {
     if (cartItem.selectedAddons.isNotEmpty) {
       _heightCard = MediaQuery.of(context).size.height * 0.18;
@@ -57,19 +65,21 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(8),
+    return GestureDetector(
+      onTap: () => goToFoodDetailsPage(
+        context,
+        uid: uid,
+        selectedAddons: cartItem.selectedAddons,
+        food: cartItem.food,
+        cameByCartPage: true,
+        cartItem: cartItem,
       ),
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: GestureDetector(
-        onTap: () => goToFoodDetailsPage(
-          context,
-          uid,
-          selectedAddons: cartItem.selectedAddons,
-          food: cartItem.food,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondary,
+          borderRadius: BorderRadius.circular(8),
         ),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -132,11 +142,8 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
                             _debouncer.run(
                               () {
                                 cartController.putCartItem(
-                                  updatedCartItem: CartItemModel(
-                                    id: cartItem.id,
-                                    food: cartItem.food,
-                                    selectedAddons: cartItem.selectedAddons,
-                                    timestamp: cartItem.timestamp,
+                                  uid: uid,
+                                  updatedCartItem: cartItem.copyWith(
                                     quantity: cartItem.quantity++,
                                     totalPrice: cartItem.totalPrice,
                                   ),
@@ -154,11 +161,8 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
                             _debouncer.run(
                               () {
                                 cartController.putCartItem(
-                                  updatedCartItem: CartItemModel(
-                                    id: cartItem.id,
-                                    food: cartItem.food,
-                                    selectedAddons: cartItem.selectedAddons,
-                                    timestamp: cartItem.timestamp,
+                                  uid: uid,
+                                  updatedCartItem: cartItem.copyWith(
                                     quantity: cartItem.quantity--,
                                     totalPrice: cartItem.totalPrice,
                                   ),
@@ -177,82 +181,11 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
                       child: Column(
                         children: [
                           if (cartItem.selectedAddons.isNotEmpty) ...[
-                            FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Wrap(
-                                children: List.generate(
-                                  cartItem.selectedAddons.length,
-                                  (index) => Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: FilterChip(
-                                      backgroundColor: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimary,
-                                      padding: EdgeInsets.zero,
-                                      label: Column(
-                                        children: [
-                                          Text(
-                                            cartItem.selectedAddons[index].name,
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .inversePrimary,
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                          Text(
-                                            cartItem.selectedAddons[index].price
-                                                .toReal(),
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .inversePrimary,
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      onSelected: (value) {},
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            ButtonsAddons(cartItem: cartItem)
                           ],
                           if (cartItem.selectedAddons.isEmpty)
                             const SizedBox(height: 10),
-                          Container(
-                            padding: const EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  "Total: ",
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .inversePrimary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  cartItem.totalPrice.toReal(),
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .inversePrimary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
+                          TotalValue(cartItem: cartItem),
                         ],
                       ),
                     ),

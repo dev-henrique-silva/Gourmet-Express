@@ -3,38 +3,56 @@ import 'package:gourmetexpress/app/components/custom_button.dart';
 import 'package:gourmetexpress/app/components/custom_scroll_behavior.dart';
 import 'package:gourmetexpress/app/components/description_of_ingredients.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
-import 'package:gourmetexpress/app/models/food_model.dart';
+import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
 import 'package:gourmetexpress/app/utils/strings/food_details_string.dart';
 
 class FoodDetailsView extends StatefulWidget {
-  final FoodModel food;
+  final FoodDetailsArgs foodDetailsArgs;
 
-  final FoodDetailsController controller;
+  final FoodDetailsController foodDetailsController;
   const FoodDetailsView({
-    super.key,
-    required this.food,
-    required this.controller,
-  });
+    Key? key,
+    required this.foodDetailsArgs,
+    required this.foodDetailsController,
+  }) : super(key: key);
 
   @override
   State<FoodDetailsView> createState() => _FoodDetailsViewState();
 }
 
 class _FoodDetailsViewState extends State<FoodDetailsView> {
-  FoodModel get food => widget.food;
-  FoodDetailsController get controller => widget.controller;
+  FoodDetailsArgs get foodDetailsArgs => widget.foodDetailsArgs;
+
+  FoodDetailsController get foodDetailsController =>
+      widget.foodDetailsController;
 
   final ValueNotifier<List<bool>> _selectedAvailableAddons =
-      ValueNotifier<List<bool>>([false, false, false]);
+      ValueNotifier<List<bool>>([]);
 
   late final double _height;
 
   @override
+  void initState() {
+    foodDetailsController.fillSelectedAddons(
+      foodDetailsArgs.food,
+      foodDetailsArgs.selectedAddons,
+      _selectedAvailableAddons,
+    );
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     _height = MediaQuery.of(context).size.width * 1.0;
-    controller.getUidFromLocalStorage();
 
     super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    _selectedAvailableAddons.removeListener(() {});
+    _selectedAvailableAddons.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,13 +67,13 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
                 child: Column(
                   children: <Widget>[
                     Image.asset(
-                      food.imagePath,
+                      foodDetailsArgs.food.imagePath,
                       width: double.infinity,
                       height: _height,
                       fit: BoxFit.cover,
                     ),
                     DescriptionOfIngredients(
-                      food: food,
+                      food: foodDetailsArgs.food,
                       selectedAvailableAddons: _selectedAvailableAddons,
                     ),
                     Padding(
@@ -71,18 +89,26 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
                             padding: 13,
                             margin: 15,
                             onPressed: () {
-                              controller.postCartItem(
-                                food: food,
-                                selectedAddons: _selectedAvailableAddons.value
-                                    .asMap()
-                                    .entries
-                                    .where((entry) => entry.value)
-                                    .map((entry) =>
-                                        food.availableAddons[entry.key])
-                                    .toList(),
-                              );
+                              if (foodDetailsArgs.cameByCartPage &&
+                                  foodDetailsArgs.cartItem != null) {
+                                foodDetailsController.putCartItem(
+                                  uid: foodDetailsArgs.uid!,
+                                  updatedCartItem: foodDetailsArgs.cartItem!,
+                                  selectedAvailableAddons:
+                                      _selectedAvailableAddons,
+                                );
 
-                              Navigator.pop(context);
+                                Navigator.pop(context);
+                              } else {
+                                foodDetailsController.postCartItem(
+                                  uid: foodDetailsArgs.uid!,
+                                  food: foodDetailsArgs.food,
+                                  selectedAvailableAddons:
+                                      _selectedAvailableAddons,
+                                );
+
+                                Navigator.pop(context);
+                              }
                             },
                           ),
                           CustomButton(

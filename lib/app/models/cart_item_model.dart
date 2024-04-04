@@ -53,4 +53,22 @@ class CartItemModel {
       'timestamp': timestamp,
     };
   }
+
+  CartItemModel copyWith({
+    String? id,
+    FoodModel? food,
+    int? quantity,
+    double? totalPrice,
+    List<AddonModel>? selectedAddons,
+    Timestamp? timestamp,
+  }) {
+    return CartItemModel(
+      id: id ?? this.id,
+      food: food ?? this.food,
+      quantity: quantity ?? this.quantity,
+      totalPrice: totalPrice ?? this.totalPrice,
+      selectedAddons: selectedAddons ?? this.selectedAddons,
+      timestamp: timestamp ?? this.timestamp,
+    );
+  }
 }
