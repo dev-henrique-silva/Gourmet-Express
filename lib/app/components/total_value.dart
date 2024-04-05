@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/utils/extensions/double_extensions.dart';
+import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class TotalValue extends StatelessWidget {
   final CartItemModel cartItem;
@@ -21,7 +22,7 @@ class TotalValue extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            "Total: ",
+            AppString.total.texto,
             style: TextStyle(
               color: Theme.of(context).colorScheme.inversePrimary,
               fontSize: 12,

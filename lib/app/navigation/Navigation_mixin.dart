@@ -52,4 +52,8 @@ mixin NavigationMixin {
     navigationCustom.navigate(context, '/cart',
         arguments: uid, replace: replace);
   }
+
+  void goToContactPage(BuildContext context) {
+    navigationCustom.navigate(context, '/contact');
+  }
 }

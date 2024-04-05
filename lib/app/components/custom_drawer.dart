@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/images_assets/images_assets.dart';
 import 'package:gourmetexpress/app/utils/strings/home_string.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
   final Function() onTap;
   const CustomDrawer({
     super.key,
     required this.onTap,
   });
 
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> with NavigationMixin {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -66,7 +72,9 @@ class CustomDrawer extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              goToContactPage(context);
+            },
           ),
           ListTile(
             leading: Icon(
@@ -80,7 +88,7 @@ class CustomDrawer extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: onTap,
+            onTap: widget.onTap,
           ),
         ],
       ),

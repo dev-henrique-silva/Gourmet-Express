@@ -8,6 +8,8 @@ enum AppString {
   erro('Erro'),
   gourmetExpress('Gourmet Express'),
   textVazio(''),
+  contato('Contato'),
+  total('Total: '),
   ;
 
   const AppString(this.texto);

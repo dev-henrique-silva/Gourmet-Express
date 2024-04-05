@@ -7,6 +7,7 @@ import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
 import 'package:gourmetexpress/app/cubits/register_account/register_account_cubit.dart';
 import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
 import 'package:gourmetexpress/app/views/cart_view.dart';
+import 'package:gourmetexpress/app/views/contact_view.dart';
 import 'package:gourmetexpress/app/views/food_details_view.dart';
 import 'package:gourmetexpress/app/views/home_view.dart';
 import 'package:gourmetexpress/app/views/login_view.dart';
@@ -31,4 +32,5 @@ final Map<String, WidgetBuilder> routes = {
         uid: ModalRoute.of(context)!.settings.arguments as String,
         cartController: getIt<CartController>(),
       ),
+  '/contact': (context) => ContactView(),
 };
