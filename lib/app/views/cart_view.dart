@@ -33,7 +33,7 @@ class _CartViewState extends State<CartView> {
             backgroundColor: Theme.of(context).colorScheme.background,
             leading: IconButton(
               icon: Icon(
-                Icons.arrow_back,
+                Icons.arrow_back_ios_new,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               onPressed: () {
@@ -41,7 +41,7 @@ class _CartViewState extends State<CartView> {
               },
             ),
             title: Text(
-              AppString.gourmetExpress.texto,
+              AppString.carrinhoDeCompras.texto,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),

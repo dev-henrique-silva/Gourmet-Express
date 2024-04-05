@@ -3,6 +3,7 @@ import 'package:gourmetexpress/app/components/custom_button.dart';
 import 'package:gourmetexpress/app/components/custom_scroll_behavior.dart';
 import 'package:gourmetexpress/app/components/description_of_ingredients.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
+import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
 import 'package:gourmetexpress/app/utils/strings/food_details_string.dart';
 
@@ -20,7 +21,8 @@ class FoodDetailsView extends StatefulWidget {
   State<FoodDetailsView> createState() => _FoodDetailsViewState();
 }
 
-class _FoodDetailsViewState extends State<FoodDetailsView> {
+class _FoodDetailsViewState extends State<FoodDetailsView>
+    with NavigationMixin {
   FoodDetailsArgs get foodDetailsArgs => widget.foodDetailsArgs;
 
   FoodDetailsController get foodDetailsController =>
@@ -46,6 +48,17 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
     _height = MediaQuery.of(context).size.width * 1.0;
 
     super.didChangeDependencies();
+  }
+
+  void widgetDidUpdate(oldWidget) {
+    _height = MediaQuery.of(context).size.width * 1.0;
+
+    foodDetailsController.fillSelectedAddons(
+      foodDetailsArgs.food,
+      foodDetailsArgs.selectedAddons,
+      _selectedAvailableAddons,
+    );
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -115,7 +128,9 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
                             text: FoodDetailsString.comprarAgora.texto,
                             padding: 13,
                             margin: 15,
-                            onPressed: () {},
+                            onPressed: () {
+                              goToPaymentPage(context);
+                            },
                           ),
                         ],
                       ),
@@ -131,7 +146,7 @@ class _FoodDetailsViewState extends State<FoodDetailsView> {
             child: Opacity(
           opacity: 0.7,
           child: Container(
-            margin: const EdgeInsets.only(left: 25),
+            margin: const EdgeInsets.only(left: 8, top: 5),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondary,
               shape: BoxShape.circle,

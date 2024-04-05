@@ -4,9 +4,7 @@ import 'package:gourmetexpress/app/models/contacts_model.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class ContactView extends StatelessWidget {
-  final Key? key;
-
-  const ContactView({this.key}) : super(key: key);
+  const ContactView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +13,7 @@ class ContactView extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.background,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios_new,
             color: Theme.of(context).colorScheme.inversePrimary,
           ),
           onPressed: () {

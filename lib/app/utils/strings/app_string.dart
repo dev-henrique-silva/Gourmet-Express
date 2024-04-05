@@ -3,13 +3,16 @@ enum AppString {
   senha('Senha'),
   entrar('Entrar'),
   cancelar('Cancelar'),
+  confirmar('Confirmar'),
   salvar('Salvar'),
   sucesso('Sucesso'),
   erro('Erro'),
   gourmetExpress('Gourmet Express'),
+  carrinhoDeCompras('Carrinho de compras'),
   textVazio(''),
   contato('Contato'),
   total('Total: '),
+  pagamento('Pagamento'),
   ;
 
   const AppString(this.texto);

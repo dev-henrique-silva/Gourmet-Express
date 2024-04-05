@@ -11,6 +11,7 @@ import 'package:gourmetexpress/app/views/contact_view.dart';
 import 'package:gourmetexpress/app/views/food_details_view.dart';
 import 'package:gourmetexpress/app/views/home_view.dart';
 import 'package:gourmetexpress/app/views/login_view.dart';
+import 'package:gourmetexpress/app/views/payment_view.dart';
 import 'package:gourmetexpress/app/views/register_account_view.dart';
 import 'package:gourmetexpress/app_inject.dart';
 
@@ -32,5 +33,6 @@ final Map<String, WidgetBuilder> routes = {
         uid: ModalRoute.of(context)!.settings.arguments as String,
         cartController: getIt<CartController>(),
       ),
-  '/contact': (context) => ContactView(),
+  '/contact': (context) => const ContactView(),
+  '/payment': (context) => const PaymentView(),
 };

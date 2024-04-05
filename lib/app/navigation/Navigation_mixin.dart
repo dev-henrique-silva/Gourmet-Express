@@ -56,4 +56,8 @@ mixin NavigationMixin {
   void goToContactPage(BuildContext context) {
     navigationCustom.navigate(context, '/contact');
   }
+
+  goToPaymentPage(BuildContext context) {
+    navigationCustom.navigate(context, '/payment');
+  }
 }
