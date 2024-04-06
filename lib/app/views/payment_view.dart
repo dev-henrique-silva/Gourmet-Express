@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/components/custom_credit_card.dart';
+import 'package:gourmetexpress/app/controllers/payment_controller.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class PaymentView extends StatefulWidget {
-  const PaymentView({super.key});
+  final bool cameByCartPage;
+  final PaymentController paymentController;
+
+  const PaymentView({
+    Key? key,
+    required this.paymentController,
+    required this.cameByCartPage,
+  }) : super(key: key);
 
   @override
   State<PaymentView> createState() => _PaymentViewState();
 }
 
 class _PaymentViewState extends State<PaymentView> {
+  PaymentController get paymentController => widget.paymentController;
+
+  @override
+  void didChangeDependencies() {
+    paymentController.fetchAllDatabase();
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    paymentController.deleteAllDatabase();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

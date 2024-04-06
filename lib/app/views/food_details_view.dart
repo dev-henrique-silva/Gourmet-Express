@@ -129,7 +129,16 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
                             padding: 13,
                             margin: 15,
                             onPressed: () {
-                              goToPaymentPage(context);
+                              goToPaymentPage(
+                                context,
+                                cameByCartPage: foodDetailsArgs.cameByCartPage,
+                              );
+
+                              foodDetailsController.insertDatabase(
+                                food: foodDetailsArgs.food,
+                                selectedAvailableAddons:
+                                    _selectedAvailableAddons,
+                              );
                             },
                           ),
                         ],

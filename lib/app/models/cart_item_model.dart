@@ -1,21 +1,25 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gourmetexpress/app/models/addon_model.dart';
 import 'package:gourmetexpress/app/models/food_model.dart';
 
 class CartItemModel {
   final String? id;
+  final int? idDatabase;
   final FoodModel food;
   int quantity;
   double totalPrice;
   final List<AddonModel> selectedAddons;
-  final Timestamp timestamp;
+  final Timestamp? timestamp;
   CartItemModel({
     this.id,
+    this.idDatabase,
     required this.food,
     required this.selectedAddons,
     this.quantity = 1,
     this.totalPrice = 0.0,
-    required this.timestamp,
+    this.timestamp,
   });
 
   factory CartItemModel.fromSnapshot(
@@ -32,7 +36,7 @@ class CartItemModel {
     );
   }
 
-  factory CartItemModel.fromMap(Map<String, dynamic> map, String id) {
+  factory CartItemModel.fromMap(Map<String, dynamic> map, {String? id}) {
     return CartItemModel(
       id: id,
       food: FoodModel.fromMap(map['food']),
@@ -54,8 +58,31 @@ class CartItemModel {
     };
   }
 
+  factory CartItemModel.fromSqlfiteDatabase(Map<String, dynamic> map) {
+    return CartItemModel(
+      idDatabase: map['idDatabase'],
+      food: FoodModel.fromMap(jsonDecode(map['food'])),
+      quantity: map['quantity'],
+      totalPrice: map['totalPrice'],
+      selectedAddons: List<AddonModel>.from(
+          jsonDecode(map['selectedAddons']).map((x) => AddonModel.fromMap(x))),
+    );
+  }
+
+  Map<String, dynamic> toMapSqlfiteDatabase() {
+    return {
+      'idDatabase': idDatabase,
+      'food': jsonEncode(food.toMap()),
+      'quantity': quantity,
+      'totalPrice': totalPrice,
+      'selectedAddons':
+          jsonEncode(selectedAddons.map((addon) => addon.toMap()).toList()),
+    };
+  }
+
   CartItemModel copyWith({
     String? id,
+    int? idDatabase,
     FoodModel? food,
     int? quantity,
     double? totalPrice,
@@ -64,6 +91,7 @@ class CartItemModel {
   }) {
     return CartItemModel(
       id: id ?? this.id,
+      idDatabase: idDatabase ?? this.idDatabase,
       food: food ?? this.food,
       quantity: quantity ?? this.quantity,
       totalPrice: totalPrice ?? this.totalPrice,

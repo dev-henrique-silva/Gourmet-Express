@@ -57,7 +57,7 @@ mixin NavigationMixin {
     navigationCustom.navigate(context, '/contact');
   }
 
-  goToPaymentPage(BuildContext context) {
-    navigationCustom.navigate(context, '/payment');
+  goToPaymentPage(BuildContext context, {required bool cameByCartPage}) {
+    navigationCustom.navigate(context, '/payment', arguments: cameByCartPage);
   }
 }

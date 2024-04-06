@@ -15,7 +15,7 @@ class CartItemService implements ICartItemService {
   Stream<List<CartItemModel>> getCartItemStream(String uid) {
     return notesCollection.doc(uid).collection('cartItem').snapshots().map(
         (snapshot) => snapshot.docs
-            .map((doc) => CartItemModel.fromMap(doc.data(), doc.id))
+            .map((doc) => CartItemModel.fromMap(doc.data(), id: doc.id))
             .toList());
   }
 

@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/models/addon_model.dart';
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/models/food_model.dart';
-import 'package:gourmetexpress/app/services/firestor_service/cart_item/cart_item_service.dart';
+import 'package:gourmetexpress/app/services/database_service/cart_item_database/i_cart_item_database.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/i_cart_item_service.dart';
 
 class FoodDetailsController {
   final ICartItemService _cartItemService;
+  final ICartItemDatabase _cartItemDatabase;
 
   FoodDetailsController({
-    required CartItemService cartItemService,
-  }) : _cartItemService = cartItemService;
+    required ICartItemService cartItemService,
+    required ICartItemDatabase cartItemDatabase,
+  })  : _cartItemService = cartItemService,
+        _cartItemDatabase = cartItemDatabase;
 
   Future<void> postCartItem({
     required FoodModel food,
@@ -49,6 +52,23 @@ class FoodDetailsController {
     );
   }
 
+  Future<void> insertDatabase({
+    required FoodModel food,
+    int quantity = 1,
+    required ValueNotifier<List<bool>> selectedAvailableAddons,
+  }) async {
+    final selectedAddons = _getSelectedAddons(food, selectedAvailableAddons);
+
+    await _cartItemDatabase.insert(
+      CartItemModel(
+        food: food,
+        quantity: quantity,
+        selectedAddons: selectedAddons,
+        totalPrice: _calculateTotalPrice(food.price, selectedAddons),
+      ).toMapSqlfiteDatabase(),
+    );
+  }
+
   double _calculateTotalPrice(
       double foodPrice, List<AddonModel?> selectedAddons) {
     double addonPrice = 0.0;
@@ -58,7 +78,6 @@ class FoodDetailsController {
     }
 
     double totalPrice = (foodPrice + addonPrice);
-
     return totalPrice;
   }
 
