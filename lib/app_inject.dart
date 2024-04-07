@@ -14,6 +14,7 @@ import 'package:gourmetexpress/app/services/database_service/database_service.da
 import 'package:gourmetexpress/app/services/firebase_auth/firebase_auth_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/address/address_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/cart_item/cart_item_service.dart';
+import 'package:gourmetexpress/app/services/firestor_service/order_details/order_service.dart';
 import 'package:gourmetexpress/app/services/food_service/food_service.dart';
 
 GetIt getIt = GetIt.instance;
@@ -27,26 +28,30 @@ void setupServiceLocator() {
     ),
   );
 
-  getIt.registerSingleton<FoodService>(
-    FoodService(),
+  getIt.registerLazySingleton<FoodService>(
+    () => FoodService(),
   );
 
-  getIt.registerSingleton<AddressService>(
-    AddressService(),
+  getIt.registerLazySingleton<AddressService>(
+    () => AddressService(),
   );
 
-  getIt.registerSingleton<CartItemService>(
-    CartItemService(),
+  getIt.registerLazySingleton<CartItemService>(
+    () => CartItemService(),
   );
 
-  getIt.registerSingleton<DatabaseService>(
-    DatabaseService(),
+  getIt.registerLazySingleton<DatabaseService>(
+    () => DatabaseService(),
   );
 
   getIt.registerSingleton<CartItemDatabase>(
     CartItemDatabase(
       databaseService: getIt<DatabaseService>(),
     ),
+  );
+
+  getIt.registerLazySingleton<OrderService>(
+    () => OrderService(),
   );
 
   getIt.registerFactory<RegisterAccountController>(
@@ -80,6 +85,7 @@ void setupServiceLocator() {
   getIt.registerFactory(
     () => PaymentController(
       cartItemDatabase: getIt<CartItemDatabase>(),
+      iOrderService: getIt<OrderService>(),
     ),
   );
 

@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/components/custom_credit_card.dart';
 import 'package:gourmetexpress/app/controllers/payment_controller.dart';
+import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
+import 'package:gourmetexpress/app/utils/args/payment_args.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
 class PaymentView extends StatefulWidget {
-  final bool cameByCartPage;
+  final PaymentArgs paymentArgs;
+
   final PaymentController paymentController;
 
   const PaymentView({
     Key? key,
     required this.paymentController,
-    required this.cameByCartPage,
+    required this.paymentArgs,
   }) : super(key: key);
 
   @override
   State<PaymentView> createState() => _PaymentViewState();
 }
 
-class _PaymentViewState extends State<PaymentView> {
+class _PaymentViewState extends State<PaymentView> with NavigationMixin {
+  String get uid => widget.paymentArgs.uid;
   PaymentController get paymentController => widget.paymentController;
 
   @override
@@ -55,7 +59,13 @@ class _PaymentViewState extends State<PaymentView> {
           ),
         ),
       ),
-      body: const CustomCreditCard(),
+      body: CustomCreditCard(
+        onPressed: () {
+          Navigator.of(context).pop();
+          paymentController.postOrder(uid: uid);
+          goToOrderDetailsPage(context);
+        },
+      ),
     );
   }
 }

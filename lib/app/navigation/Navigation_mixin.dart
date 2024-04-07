@@ -4,6 +4,7 @@ import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/navigation/navigation_custom.dart';
 import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
+import 'package:gourmetexpress/app/utils/args/payment_args.dart';
 
 mixin NavigationMixin {
   NavigationCustom navigationCustom = NavigationCustom();
@@ -57,7 +58,16 @@ mixin NavigationMixin {
     navigationCustom.navigate(context, '/contact');
   }
 
-  goToPaymentPage(BuildContext context, {required bool cameByCartPage}) {
-    navigationCustom.navigate(context, '/payment', arguments: cameByCartPage);
+  goToPaymentPage(BuildContext context,
+      {String? uid, required bool cameByCartPage}) {
+    navigationCustom.navigate(context, '/payment',
+        arguments: PaymentArgs(
+          uid: uid!,
+          cameByCartPage: cameByCartPage,
+        ));
+  }
+
+  goToOrderDetailsPage(BuildContext context) {
+    navigationCustom.navigate(context, '/order_details');
   }
 }

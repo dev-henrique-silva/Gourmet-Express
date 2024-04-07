@@ -20,13 +20,13 @@ class CartItemService implements ICartItemService {
   }
 
   @override
-  Future<void> putCartItem(String uid, CartItemModel updatedcartItem) async {
+  Future<void> putCartItem(String uid, CartItemModel updatedCartItem) async {
     await notesCollection
         .doc(uid)
         .collection('cartItem')
-        .doc(updatedcartItem.id)
+        .doc(updatedCartItem.id)
         .update(
-          updatedcartItem.toMap(),
+          updatedCartItem.toMap(),
         );
   }
 

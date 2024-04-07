@@ -7,11 +7,13 @@ import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
 import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
 import 'package:gourmetexpress/app/cubits/register_account/register_account_cubit.dart';
 import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
+import 'package:gourmetexpress/app/utils/args/payment_args.dart';
 import 'package:gourmetexpress/app/views/cart_view.dart';
 import 'package:gourmetexpress/app/views/contact_view.dart';
 import 'package:gourmetexpress/app/views/food_details_view.dart';
 import 'package:gourmetexpress/app/views/home_view.dart';
 import 'package:gourmetexpress/app/views/login_view.dart';
+import 'package:gourmetexpress/app/views/order_details_view.dart';
 import 'package:gourmetexpress/app/views/payment_view.dart';
 import 'package:gourmetexpress/app/views/register_account_view.dart';
 import 'package:gourmetexpress/app_inject.dart';
@@ -35,8 +37,9 @@ final Map<String, WidgetBuilder> routes = {
         cartController: getIt<CartController>(),
       ),
   '/payment': (context) => PaymentView(
-        cameByCartPage: ModalRoute.of(context)!.settings.arguments as bool,
+        paymentArgs: ModalRoute.of(context)!.settings.arguments as PaymentArgs,
         paymentController: getIt<PaymentController>(),
       ),
+  '/order_details': (context) => const OrderDetailsView(),
   '/contact': (context) => const ContactView(),
 };

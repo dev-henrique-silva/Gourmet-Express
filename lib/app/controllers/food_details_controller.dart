@@ -69,6 +69,10 @@ class FoodDetailsController {
     );
   }
 
+  Future deleteAllDatabase() async {
+    await _cartItemDatabase.deleteAll();
+  }
+
   double _calculateTotalPrice(
       double foodPrice, List<AddonModel?> selectedAddons) {
     double addonPrice = 0.0;

@@ -5,7 +5,11 @@ import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 import 'package:gourmetexpress/app/utils/strings/credit_card_string.dart';
 
 class CustomCreditCard extends StatefulWidget {
-  const CustomCreditCard({super.key});
+  final VoidCallback onPressed;
+  const CustomCreditCard({
+    super.key,
+    required this.onPressed,
+  });
 
   @override
   State<CustomCreditCard> createState() => _CustomCreditCardState();
@@ -18,6 +22,8 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
   String cardHolderName = AppString.textVazio.texto;
   String cvvCode = AppString.textVazio.texto;
   bool showBackView = false;
+
+  VoidCallback? get onPressed => widget.onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -116,14 +122,14 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
           text: CreditCardString.confirmarACompra.texto,
           padding: 15,
           margin: 60,
-          onPressed: _confirmPayment,
+          onPressed: confirmPayment,
         ),
         const SizedBox(height: 10),
       ],
     );
   }
 
-  void _confirmPayment() {
+  void confirmPayment() {
     if (formKey.currentState!.validate()) {
       showDialog(
         context: context,
@@ -156,15 +162,13 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
               },
             ),
             TextButton(
+              onPressed: onPressed,
               child: Text(
                 AppString.confirmar.texto,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.inversePrimary,
                 ),
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
             ),
           ],
         ),

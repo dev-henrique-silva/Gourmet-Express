@@ -40,6 +40,7 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
       foodDetailsArgs.selectedAddons,
       _selectedAvailableAddons,
     );
+    foodDetailsController.deleteAllDatabase();
     super.initState();
   }
 
@@ -131,6 +132,7 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
                             onPressed: () {
                               goToPaymentPage(
                                 context,
+                                uid: foodDetailsArgs.uid!,
                                 cameByCartPage: foodDetailsArgs.cameByCartPage,
                               );
 
