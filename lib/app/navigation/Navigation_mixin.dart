@@ -60,8 +60,17 @@ mixin NavigationMixin {
         arguments: uid, replace: replace);
   }
 
-  void goToContactPage(BuildContext context) {
-    navigationCustom.navigate(context, '/contact');
+  void goToContactPage(
+    BuildContext context, {
+    String? uid,
+    bool pushAndRemoveUntil = false,
+  }) {
+    navigationCustom.navigate(
+      context,
+      '/contact',
+      arguments: uid,
+      pushAndRemoveUntil: pushAndRemoveUntil,
+    );
   }
 
   goToPaymentPage(

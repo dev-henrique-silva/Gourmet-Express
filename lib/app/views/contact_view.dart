@@ -1,10 +1,22 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/models/contacts_model.dart';
+import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 
-class ContactView extends StatelessWidget {
-  const ContactView({super.key});
+class ContactView extends StatefulWidget {
+  final String? uid;
+  const ContactView({
+    Key? key,
+    required this.uid,
+  }) : super(key: key);
+
+  @override
+  State<ContactView> createState() => _ContactViewState();
+}
+
+class _ContactViewState extends State<ContactView> with NavigationMixin {
+  String? get uid => widget.uid ?? AppString.textVazio.texto;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +28,11 @@ class ContactView extends StatelessWidget {
             Icons.arrow_back_ios_new,
             color: Theme.of(context).colorScheme.inversePrimary,
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => goToHomePage(
+            context,
+            uid: uid,
+            pushAndRemoveUntil: true,
+          ),
         ),
         title: Text(
           AppString.contato.texto,

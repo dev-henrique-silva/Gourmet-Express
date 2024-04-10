@@ -47,4 +47,27 @@ class OrderModel {
       'confirmedDelivery': confirmedDelivery,
     };
   }
+
+  OrderModel copyWith({
+    String? id,
+    List<CartItemModel>? cartItems,
+    String? orderDate,
+    String? estimatedDeliveryTime,
+    double? deliveryCost,
+    int? totalItems,
+    double? totalPayable,
+    bool? confirmedDelivery,
+  }) {
+    return OrderModel(
+      id: id ?? this.id,
+      cartItems: cartItems ?? this.cartItems,
+      orderDate: orderDate ?? this.orderDate,
+      estimatedDeliveryTime:
+          estimatedDeliveryTime ?? this.estimatedDeliveryTime,
+      deliveryCost: deliveryCost ?? this.deliveryCost,
+      totalItems: totalItems ?? this.totalItems,
+      totalPayable: totalPayable ?? this.totalPayable,
+      confirmedDelivery: confirmedDelivery ?? this.confirmedDelivery,
+    );
+  }
 }

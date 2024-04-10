@@ -12,4 +12,11 @@ class OrderDetailsController {
   Stream<OrderModel> getOrder(String uid) {
     return _orderService.getLastOrderStream(uid);
   }
+
+  Future<void> confirmDelivery({
+    required String uid,
+    required OrderModel updatedOrder,
+  }) {
+    return _orderService.putOrder(uid, updatedOrder);
+  }
 }

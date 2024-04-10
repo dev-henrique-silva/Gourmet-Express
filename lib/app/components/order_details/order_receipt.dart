@@ -48,41 +48,43 @@ class OrderReceipt extends StatelessWidget {
                       Text(cartItem.food.price.toReal()),
                     ],
                   ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: order.cartItems.length,
-                    itemBuilder: (context, index) {
-                      final addons = cartItem.selectedAddons[index];
+                  if (cartItem.selectedAddons.isNotEmpty) ...[
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: order.cartItems.length,
+                      itemBuilder: (context, index) {
+                        final addons = cartItem.selectedAddons[index];
 
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${cartItem.quantity.toString()}x',
-                                  style: const TextStyle(fontSize: 10),
-                                ),
-                                const SizedBox(width: 5),
-                                Text(
-                                  addons.name,
-                                  style: const TextStyle(fontSize: 11),
-                                ),
-                                const SizedBox(width: 5),
-                                const Text("-"),
-                                const SizedBox(width: 5),
-                                Text(
-                                  addons.price.toReal(),
-                                  style: const TextStyle(fontSize: 11),
-                                ),
-                              ],
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '${cartItem.quantity.toString()}x',
+                                    style: const TextStyle(fontSize: 10),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    addons.name,
+                                    style: const TextStyle(fontSize: 11),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  const Text("-"),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    addons.price.toReal(),
+                                    style: const TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
                   Text(ReceiptString.divisorDePedidos.texto),
                 ],
               );

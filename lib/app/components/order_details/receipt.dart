@@ -19,13 +19,17 @@ class Receipt extends StatefulWidget {
 }
 
 class _ReceiptState extends State<Receipt> {
+  String get uid => widget.uid;
+  OrderDetailsController get orderDetailsController =>
+      widget.orderDetailsController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: StreamBuilder<OrderModel>(
-          stream: widget.orderDetailsController.getOrder(widget.uid),
+          stream: widget.orderDetailsController.getOrder(uid),
           builder: (context, snapshot) {
             final order = snapshot.data;
 
@@ -41,7 +45,11 @@ class _ReceiptState extends State<Receipt> {
               );
             }
 
-            return OrderDetails(order: order);
+            return OrderDetails(
+              order: order,
+              uid: uid,
+              orderDetailsController: orderDetailsController,
+            );
           },
         ),
       ),

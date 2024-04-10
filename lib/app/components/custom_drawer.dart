@@ -5,9 +5,11 @@ import 'package:gourmetexpress/app/utils/strings/home_string.dart';
 
 class CustomDrawer extends StatefulWidget {
   final Function() onTap;
+  final String uid;
   const CustomDrawer({
     super.key,
     required this.onTap,
+    required this.uid,
   });
 
   @override
@@ -15,6 +17,8 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> with NavigationMixin {
+  String get uid => widget.uid;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -73,7 +77,8 @@ class _CustomDrawerState extends State<CustomDrawer> with NavigationMixin {
               ),
             ),
             onTap: () {
-              goToContactPage(context);
+              Navigator.pop(context);
+              goToContactPage(context, uid: uid);
             },
           ),
           ListTile(

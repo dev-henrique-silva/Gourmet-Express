@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/components/custom_button.dart';
+import 'package:gourmetexpress/app/controllers/order_details_controller.dart';
 import 'package:gourmetexpress/app/models/order_model.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/strings/recipt_string.dart';
 
 class DeliveryConfirmation extends StatefulWidget {
   final OrderModel order;
+  final String uid;
+
+  final OrderDetailsController orderDetailsController;
 
   const DeliveryConfirmation({
     Key? key,
     required this.order,
+    required this.uid,
+    required this.orderDetailsController,
   }) : super(key: key);
 
   @override
@@ -18,11 +24,16 @@ class DeliveryConfirmation extends StatefulWidget {
 
 class _DeliveryConfirmationState extends State<DeliveryConfirmation>
     with NavigationMixin {
+  OrderModel get order => widget.order;
+  String get uid => widget.uid;
+  OrderDetailsController get orderDetailsController =>
+      widget.orderDetailsController;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        widget.order.confirmedDelivery
+        order.confirmedDelivery
             ? Container(
                 padding: const EdgeInsets.all(15),
                 margin: const EdgeInsets.symmetric(horizontal: 50),
@@ -44,7 +55,12 @@ class _DeliveryConfirmationState extends State<DeliveryConfirmation>
               )
             : CustomButton(
                 text: ReceiptString.confirmarEntrega.texto,
-                onPressed: () {},
+                onPressed: () {
+                  orderDetailsController.confirmDelivery(
+                    uid: uid,
+                    updatedOrder: order.copyWith(confirmedDelivery: true),
+                  );
+                },
                 margin: 50,
                 padding: 15,
                 borderRadius: 25,
@@ -53,7 +69,11 @@ class _DeliveryConfirmationState extends State<DeliveryConfirmation>
         CustomButton(
           text: ReceiptString.entrarEmContato.texto,
           onPressed: () {
-            goToContactPage(context);
+            goToContactPage(
+              context,
+              uid: uid,
+              pushAndRemoveUntil: true,
+            );
           },
           margin: 50,
           padding: 15,

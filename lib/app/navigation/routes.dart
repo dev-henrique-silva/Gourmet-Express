@@ -45,5 +45,7 @@ final Map<String, WidgetBuilder> routes = {
         uid: ModalRoute.of(context)!.settings.arguments as String,
         orderDetailsController: getIt<OrderDetailsController>(),
       ),
-  '/contact': (context) => const ContactView(),
+  '/contact': (context) => ContactView(
+        uid: ModalRoute.of(context)!.settings.arguments as String,
+      ),
 };

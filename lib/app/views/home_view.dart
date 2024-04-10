@@ -68,6 +68,7 @@ class _HomeViewState extends State<HomeView>
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         drawer: CustomDrawer(
+          uid: uid,
           onTap: () {
             goToLoginPage(context, pushAndRemoveUntil: true);
             homeController.signOut();

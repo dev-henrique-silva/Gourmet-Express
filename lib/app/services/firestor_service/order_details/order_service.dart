@@ -21,10 +21,15 @@ class OrderService implements IOrderService {
 
   @override
   Stream<OrderModel> getLastOrderStream(String uid) {
-    return notesCollection.doc(uid).collection('order').snapshots().map(
+    return notesCollection
+        .doc(uid)
+        .collection('order')
+        .orderBy('orderDate', descending: true)
+        .snapshots()
+        .map(
           (snapshot) => snapshot.docs
               .map((doc) => OrderModel.fromMap(doc.data(), id: doc.id))
-              .last,
+              .first,
         );
   }
 
