@@ -4,6 +4,7 @@ import 'package:gourmetexpress/app/controllers/cart_controller.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
 import 'package:gourmetexpress/app/controllers/home_controller.dart';
 import 'package:gourmetexpress/app/controllers/login_controller.dart';
+import 'package:gourmetexpress/app/controllers/order_details_controller.dart';
 import 'package:gourmetexpress/app/controllers/payment_controller.dart';
 import 'package:gourmetexpress/app/controllers/register_account_controller.dart';
 import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
@@ -86,14 +87,20 @@ void setupServiceLocator() {
     () => PaymentController(
       cartItemDatabase: getIt<CartItemDatabase>(),
       iOrderService: getIt<OrderService>(),
+      cartItemService: getIt<CartItemService>(),
     ),
   );
 
   getIt.registerFactory(
     () => CartController(
       cartItemService: getIt<CartItemService>(),
+      cartItemDatabase: getIt<CartItemDatabase>(),
     ),
   );
+
+  getIt.registerFactory(() => OrderDetailsController(
+        orderService: getIt<OrderService>(),
+      ));
 
   getIt.registerFactory(
     () => LoginCubit(

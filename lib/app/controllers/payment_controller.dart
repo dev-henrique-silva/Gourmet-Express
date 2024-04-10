@@ -1,18 +1,22 @@
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/models/order_model.dart';
 import 'package:gourmetexpress/app/services/database_service/cart_item_database/i_cart_item_database.dart';
+import 'package:gourmetexpress/app/services/firestor_service/cart_item/cart_item_service.dart';
 import 'package:gourmetexpress/app/services/firestor_service/order_details/i_order_service.dart';
 import 'package:intl/intl.dart';
 
 class PaymentController {
   final ICartItemDatabase _cartItemDatabase;
   final IOrderService _iOrderService;
+  final CartItemService _cartItemService;
 
   PaymentController({
     required ICartItemDatabase cartItemDatabase,
     required IOrderService iOrderService,
+    required CartItemService cartItemService,
   })  : _cartItemDatabase = cartItemDatabase,
-        _iOrderService = iOrderService;
+        _iOrderService = iOrderService,
+        _cartItemService = cartItemService;
 
   static const double deliveryCost = 4.99;
   List<CartItemModel> cartItems = [];
@@ -25,6 +29,17 @@ class PaymentController {
 
   Future deleteAllDatabase() async {
     await _cartItemDatabase.deleteAll();
+  }
+
+  Future<void> deleteAllCartItems({required String uid}) async {
+    await _cartItemService.deleteAllCartItems(uid);
+  }
+
+  Future<void> deleteCartItemById({
+    required String uid,
+    required String itemId,
+  }) async {
+    await _cartItemService.deleteCartItemById(uid, itemId);
   }
 
   Future<void> postOrder({

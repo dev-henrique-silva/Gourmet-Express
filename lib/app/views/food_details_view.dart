@@ -5,6 +5,7 @@ import 'package:gourmetexpress/app/components/description_of_ingredients.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
+import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 import 'package:gourmetexpress/app/utils/strings/food_details_string.dart';
 
 class FoodDetailsView extends StatefulWidget {
@@ -31,7 +32,7 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
   final ValueNotifier<List<bool>> _selectedAvailableAddons =
       ValueNotifier<List<bool>>([]);
 
-  late final double _height;
+  double _height = 320;
 
   @override
   void initState() {
@@ -46,13 +47,13 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
 
   @override
   void didChangeDependencies() {
-    _height = MediaQuery.of(context).size.width * 1.0;
+    _height = MediaQuery.of(context).size.width * 0.8;
 
     super.didChangeDependencies();
   }
 
   void widgetDidUpdate(oldWidget) {
-    _height = MediaQuery.of(context).size.width * 1.0;
+    _height = MediaQuery.of(context).size.width * 0.8;
 
     foodDetailsController.fillSelectedAddons(
       foodDetailsArgs.food,
@@ -126,18 +127,22 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
                             },
                           ),
                           CustomButton(
-                            text: FoodDetailsString.comprarAgora.texto,
+                            text: AppString.comprarAgora.texto,
                             padding: 13,
                             margin: 15,
                             onPressed: () {
                               goToPaymentPage(
                                 context,
-                                uid: foodDetailsArgs.uid!,
+                                uid: foodDetailsArgs.uid,
+                                cartItem: foodDetailsArgs.cameByCartPage
+                                    ? foodDetailsArgs.cartItem
+                                    : null,
                                 cameByCartPage: foodDetailsArgs.cameByCartPage,
                               );
 
                               foodDetailsController.insertDatabase(
                                 food: foodDetailsArgs.food,
+                                quantity: foodDetailsArgs.cartItem?.quantity,
                                 selectedAvailableAddons:
                                     _selectedAvailableAddons,
                               );

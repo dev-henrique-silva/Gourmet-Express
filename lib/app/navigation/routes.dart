@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/controllers/cart_controller.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
 import 'package:gourmetexpress/app/controllers/home_controller.dart';
+import 'package:gourmetexpress/app/controllers/order_details_controller.dart';
 import 'package:gourmetexpress/app/controllers/payment_controller.dart';
 import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
 import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
@@ -40,6 +41,9 @@ final Map<String, WidgetBuilder> routes = {
         paymentArgs: ModalRoute.of(context)!.settings.arguments as PaymentArgs,
         paymentController: getIt<PaymentController>(),
       ),
-  '/order_details': (context) => const OrderDetailsView(),
+  '/order_details': (context) => OrderDetailsView(
+        uid: ModalRoute.of(context)!.settings.arguments as String,
+        orderDetailsController: getIt<OrderDetailsController>(),
+      ),
   '/contact': (context) => const ContactView(),
 };

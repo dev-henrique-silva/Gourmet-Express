@@ -54,7 +54,7 @@ class FoodDetailsController {
 
   Future<void> insertDatabase({
     required FoodModel food,
-    int quantity = 1,
+    int? quantity,
     required ValueNotifier<List<bool>> selectedAvailableAddons,
   }) async {
     final selectedAddons = _getSelectedAddons(food, selectedAvailableAddons);
@@ -62,7 +62,7 @@ class FoodDetailsController {
     await _cartItemDatabase.insert(
       CartItemModel(
         food: food,
-        quantity: quantity,
+        quantity: quantity ?? 1,
         selectedAddons: selectedAddons,
         totalPrice: _calculateTotalPrice(food.price, selectedAddons),
       ).toMapSqlfiteDatabase(),

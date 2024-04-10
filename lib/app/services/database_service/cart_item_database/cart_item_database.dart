@@ -15,7 +15,7 @@ class CartItemDatabase implements ICartItemDatabase {
   Future<void> createTable(Database database) async {
     await database.execute('''
       CREATE TABLE IF NOT EXISTS $tableName (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        idDatabase INTEGER PRIMARY KEY AUTOINCREMENT,
         food TEXT,
         quantity INTEGER,
         totalPrice REAL,

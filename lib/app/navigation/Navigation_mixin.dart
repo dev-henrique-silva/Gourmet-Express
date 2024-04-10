@@ -23,9 +23,15 @@ mixin NavigationMixin {
     BuildContext context, {
     String? uid,
     bool replace = false,
+    bool pushAndRemoveUntil = false,
   }) {
-    navigationCustom.navigate(context, '/home',
-        replace: replace, arguments: uid);
+    navigationCustom.navigate(
+      context,
+      '/home',
+      arguments: uid,
+      replace: replace,
+      pushAndRemoveUntil: pushAndRemoveUntil,
+    );
   }
 
   void goToFoodDetailsPage(
@@ -58,16 +64,29 @@ mixin NavigationMixin {
     navigationCustom.navigate(context, '/contact');
   }
 
-  goToPaymentPage(BuildContext context,
-      {String? uid, required bool cameByCartPage}) {
+  goToPaymentPage(
+    BuildContext context, {
+    String? uid,
+    CartItemModel? cartItem,
+    required bool cameByCartPage,
+    bool deleteAllCart = false,
+  }) {
     navigationCustom.navigate(context, '/payment',
         arguments: PaymentArgs(
           uid: uid!,
+          cartItem: cartItem,
+          deleteAllCart: deleteAllCart,
           cameByCartPage: cameByCartPage,
         ));
   }
 
-  goToOrderDetailsPage(BuildContext context) {
-    navigationCustom.navigate(context, '/order_details');
+  goToOrderDetailsPage(BuildContext context,
+      {required String uid, bool replace = false}) {
+    navigationCustom.navigate(
+      context,
+      '/order_details',
+      arguments: uid,
+      replace: replace,
+    );
   }
 }

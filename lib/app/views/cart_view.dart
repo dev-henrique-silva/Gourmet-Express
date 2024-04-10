@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gourmetexpress/app/components/custom_button.dart';
 import 'package:gourmetexpress/app/components/custom_cart_tile.dart';
 import 'package:gourmetexpress/app/controllers/cart_controller.dart';
 import 'package:gourmetexpress/app/models/cart_item_model.dart';
+import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
 import 'package:gourmetexpress/app/utils/strings/app_string.dart';
 import 'package:gourmetexpress/app/utils/strings/home_string.dart';
 
@@ -19,7 +21,7 @@ class CartView extends StatefulWidget {
   State<CartView> createState() => _CartViewState();
 }
 
-class _CartViewState extends State<CartView> {
+class _CartViewState extends State<CartView> with NavigationMixin {
   String get uid => widget.uid;
   CartController get cartController => widget.cartController;
 
@@ -112,6 +114,33 @@ class _CartViewState extends State<CartView> {
                     : const Center(
                         child: CircularProgressIndicator(),
                       ),
+              ),
+              if (snapshot.data != null && snapshot.data!.isNotEmpty)
+                CustomButton(
+                  text: AppString.comprarAgora.texto,
+                  padding: 13,
+                  margin: 15,
+                  onPressed: () {
+                    snapshot.data?.forEach(
+                      (element) {
+                        cartController.insertDatabase(
+                          food: element.food,
+                          quantity: element.quantity,
+                          selectedAddons: element.selectedAddons,
+                        );
+                      },
+                    );
+
+                    goToPaymentPage(
+                      context,
+                      uid: uid,
+                      cameByCartPage: true,
+                      deleteAllCart: true,
+                    );
+                  },
+                ),
+              const SizedBox(
+                height: 15,
               ),
             ],
           ),

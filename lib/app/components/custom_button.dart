@@ -6,6 +6,7 @@ class CustomButton extends StatelessWidget {
   final bool isLoading;
   final double? padding;
   final double? margin;
+  final double? borderRadius;
 
   const CustomButton({
     Key? key,
@@ -14,6 +15,7 @@ class CustomButton extends StatelessWidget {
     this.isLoading = false,
     this.padding = 25,
     this.margin = 25,
+    this.borderRadius = 8,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class CustomButton extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: margin!),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(borderRadius!),
         ),
         child: Center(
           child: isLoading

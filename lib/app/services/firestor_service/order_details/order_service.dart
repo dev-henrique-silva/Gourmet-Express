@@ -12,11 +12,20 @@ class OrderService implements IOrderService {
   }
 
   @override
-  Stream<List<OrderModel>> getOrderStream(String uid) {
+  Stream<List<OrderModel>> getOrdersStream(String uid) {
     return notesCollection.doc(uid).collection('order').snapshots().map(
         (snapshot) => snapshot.docs
             .map((doc) => OrderModel.fromMap(doc.data(), id: doc.id))
             .toList());
+  }
+
+  @override
+  Stream<OrderModel> getLastOrderStream(String uid) {
+    return notesCollection.doc(uid).collection('order').snapshots().map(
+          (snapshot) => snapshot.docs
+              .map((doc) => OrderModel.fromMap(doc.data(), id: doc.id))
+              .last,
+        );
   }
 
   @override

@@ -13,6 +13,7 @@ enum AppString {
   contato('Contato'),
   total('Total: '),
   pagamento('Pagamento'),
+  comprarAgora('Comprar agora'),
   ;
 
   const AppString(this.texto);

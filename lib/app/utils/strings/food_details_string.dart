@@ -1,6 +1,5 @@
 enum FoodDetailsString {
   adicionarAoCarrinho('Adicionar ao carrinho'),
-  comprarAgora('Comprar agora'),
   adicionaisDisponiveis('Adicionais disponíveis'),
   ;
 

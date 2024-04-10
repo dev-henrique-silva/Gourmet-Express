@@ -22,6 +22,9 @@ class PaymentView extends StatefulWidget {
 
 class _PaymentViewState extends State<PaymentView> with NavigationMixin {
   String get uid => widget.paymentArgs.uid;
+  String? get cartItemId => widget.paymentArgs.cartItem?.id;
+  bool get cameByCartPage => widget.paymentArgs.cameByCartPage;
+  bool get deleteAllCart => widget.paymentArgs.deleteAllCart;
   PaymentController get paymentController => widget.paymentController;
 
   @override
@@ -63,7 +66,17 @@ class _PaymentViewState extends State<PaymentView> with NavigationMixin {
         onPressed: () {
           Navigator.of(context).pop();
           paymentController.postOrder(uid: uid);
-          goToOrderDetailsPage(context);
+          goToOrderDetailsPage(
+            context,
+            uid: uid,
+          );
+          paymentController.deleteAllDatabase();
+
+          if (deleteAllCart) {
+            paymentController.deleteAllCartItems(uid: uid);
+          } else if (cameByCartPage && cartItemId != null) {
+            paymentController.deleteCartItemById(uid: uid, itemId: cartItemId!);
+          }
         },
       ),
     );
