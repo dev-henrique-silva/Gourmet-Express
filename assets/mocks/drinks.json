@@ -1,7 +1,7 @@
 [
     {
       "name": "Café Expresso",
-      "description": "Café expresso forte e aromático.",
+      "description": "Café expresso forte e aromático: uma explosão de sabor e aroma.",
       "imagePath": "assets/img/mocks/drinks/drink_espresso.png",
       "price": 3.99,
       "category": "bebidas",
@@ -13,7 +13,7 @@
     },
     {
       "name": "Chá Verde",
-      "description": "Chá verde fresco e revigorante.",
+      "description": "Chá verde fresco e revigorante: um convite para desfrutar de momentos de tranquilidade.",
       "imagePath": "assets/img/mocks/drinks/drink_green_tea.png",
       "price": 2.49,
       "category": "bebidas",
@@ -25,7 +25,7 @@
     },
     {
       "name": "Suco de Laranja",
-      "description": "Suco de laranja fresco e natural.",
+      "description": "Suco de laranja fresco e natural: uma explosão de frescor e vitalidade em cada gole.",
       "imagePath": "assets/img/mocks/drinks/drink_orange_juice.png",
       "price": 5.99,
       "category": "bebidas",
@@ -37,7 +37,7 @@
     },
     {
       "name": "Café com Leite",
-      "description": "Café expresso com leite quente.",
+      "description": "Café expresso com leite quente: a combinação entre a intensidade do café e a suavidade do leite.",
       "imagePath": "assets/img/mocks/drinks/drink_cafe_latte.png",
       "price": 3.49,
       "category": "bebidas",
@@ -49,7 +49,7 @@
     },
     {
       "name": "Chá de Camomila",
-      "description": "Chá de camomila calmante e relaxante.",
+      "description": "Chá de camomila calmante e relaxante: para acalmar a mente e o corpo após um dia agitado.",
       "imagePath": "assets/img/mocks/drinks/drink_chamomile_tea.png",
       "price": 2.49,
       "category": "bebidas",
@@ -61,7 +61,7 @@
     },
     {
       "name": "Coca-Cola",
-      "description": "Refrigerante de cola clássico e refrescante.",
+      "description": "Refrigerante de cola clássico e refrescante: o sabor icônico que traz nostalgia e refrescância em cada gole.",
       "imagePath": "assets/img/mocks/drinks/drink_coca_cola.png",
       "price": 4.99,
       "category": "bebidas",
@@ -73,7 +73,7 @@
     },
     {
       "name": "Água Mineral",
-      "description": "Água mineral pura e refrescante.",
+      "description": "Água mineral pura e refrescante: a essência da pureza em cada gota, saciando a sede e revitalizando o corpo.",
       "imagePath": "assets/img/mocks/drinks/drink_mineral_water.png",
       "price": 1.99,
       "category": "bebidas",
@@ -85,7 +85,7 @@
     },
     {
       "name": "Smoothie de Morango",
-      "description": "Smoothie de morango fresco e saudável.",
+      "description": "Smoothie de morango fresco e saudável: uma explosão de sabor com um toque de frescor e vitalidade.",
       "imagePath": "assets/img/mocks/drinks/drink_strawberry_smoothie.png",
       "price": 6.99,
       "category": "bebidas",

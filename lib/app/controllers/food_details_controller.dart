@@ -48,7 +48,13 @@ class FoodDetailsController {
 
     await _cartItemService.putCartItem(
       uid,
-      updatedCartItem.copyWith(selectedAddons: selectedAddons),
+      updatedCartItem.copyWith(
+        selectedAddons: selectedAddons,
+        totalPrice: _calculateTotalPrice(
+          updatedCartItem.food.price,
+          selectedAddons,
+        ),
+      ),
     );
   }
 

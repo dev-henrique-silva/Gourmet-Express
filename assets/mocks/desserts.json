@@ -25,7 +25,7 @@
     },
     {
       "name": "Brownie de Chocolate",
-      "description": "Brownie rico e denso de chocolate, nozes opcionais.",
+      "description": "Brownie rico e denso de chocolate, nozes opcionais. Uma delícia irresistível.",
       "imagePath": "assets/img/mocks/desserts/dessert_brownie.png",
       "price": 14.99,
       "category": "sobremesas",
@@ -37,7 +37,7 @@
     },
     {
       "name": "Sorvete de Baunilha",
-      "description": "Sorvete cremoso de baunilha.",
+      "description": "Sorvete de baunilha cremoso: uma delícia refrescante e reconfortante em cada colherada.",
       "imagePath": "assets/img/mocks/desserts/dessert_vanilla_ice_cream.png",
       "price": 12.99,
       "category": "sobremesas",
@@ -61,7 +61,7 @@
     },
     {
       "name": "Pudim de Leite",
-      "description": "Pudim de leite condensado com calda de caramelo.",
+      "description": "Pudim de leite condensado com caramelo: uma sobremesa clássica, com sabor inigualável.",
       "imagePath": "assets/img/mocks/desserts/dessert_milk_pudding.png",
       "price": 13.99,
       "category": "sobremesas",
@@ -73,7 +73,7 @@
     },
     {
       "name": "Bolo de Cenoura",
-      "description": "Bolo de cenoura úmido com cobertura de chocolate.",
+      "description": "Bolo de cenoura úmido com cobertura de chocolate: combinação que agrada a todos os paladares.",
       "imagePath": "assets/img/mocks/desserts/dessert_carrot_cake.png",
       "price": 14.99,
       "category": "sobremesas",

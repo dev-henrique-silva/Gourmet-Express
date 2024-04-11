@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/components/custom_button.dart';
-import 'package:gourmetexpress/app/components/custom_scroll_behavior.dart';
 import 'package:gourmetexpress/app/components/description_of_ingredients.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
@@ -32,8 +31,6 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
   final ValueNotifier<List<bool>> _selectedAvailableAddons =
       ValueNotifier<List<bool>>([]);
 
-  double _height = 320;
-
   @override
   void initState() {
     foodDetailsController.fillSelectedAddons(
@@ -45,16 +42,7 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
     super.initState();
   }
 
-  @override
-  void didChangeDependencies() {
-    _height = MediaQuery.of(context).size.width * 0.8;
-
-    super.didChangeDependencies();
-  }
-
   void widgetDidUpdate(oldWidget) {
-    _height = MediaQuery.of(context).size.width * 0.8;
-
     foodDetailsController.fillSelectedAddons(
       foodDetailsArgs.food,
       foodDetailsArgs.selectedAddons,
@@ -72,108 +60,103 @@ class _FoodDetailsViewState extends State<FoodDetailsView>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ScrollConfiguration(
-          behavior: CustomScrollBehavior(),
-          child: Scaffold(
-            body: Center(
-              child: SingleChildScrollView(
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        double screenHeight = constraints.maxHeight;
+
+        return Stack(
+          children: [
+            Scaffold(
+              body: Center(
                 child: Column(
                   children: <Widget>[
                     Image.asset(
                       foodDetailsArgs.food.imagePath,
                       width: double.infinity,
-                      height: _height,
+                      height: screenHeight * 0.4,
                       fit: BoxFit.cover,
                     ),
                     DescriptionOfIngredients(
                       food: foodDetailsArgs.food,
                       selectedAvailableAddons: _selectedAvailableAddons,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0,
-                        vertical: 10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CustomButton(
-                            text: FoodDetailsString.adicionarAoCarrinho.texto,
-                            padding: 13,
-                            margin: 15,
-                            onPressed: () {
-                              if (foodDetailsArgs.cameByCartPage &&
-                                  foodDetailsArgs.cartItem != null) {
-                                foodDetailsController.putCartItem(
-                                  uid: foodDetailsArgs.uid!,
-                                  updatedCartItem: foodDetailsArgs.cartItem!,
-                                  selectedAvailableAddons:
-                                      _selectedAvailableAddons,
-                                );
-
-                                Navigator.pop(context);
-                              } else {
-                                foodDetailsController.postCartItem(
-                                  uid: foodDetailsArgs.uid!,
-                                  food: foodDetailsArgs.food,
-                                  selectedAvailableAddons:
-                                      _selectedAvailableAddons,
-                                );
-
-                                Navigator.pop(context);
-                              }
-                            },
-                          ),
-                          CustomButton(
-                            text: AppString.comprarAgora.texto,
-                            padding: 13,
-                            margin: 15,
-                            onPressed: () {
-                              goToPaymentPage(
-                                context,
-                                uid: foodDetailsArgs.uid,
-                                cartItem: foodDetailsArgs.cameByCartPage
-                                    ? foodDetailsArgs.cartItem
-                                    : null,
-                                cameByCartPage: foodDetailsArgs.cameByCartPage,
-                              );
-
-                              foodDetailsController.insertDatabase(
-                                food: foodDetailsArgs.food,
-                                quantity: foodDetailsArgs.cartItem?.quantity,
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        CustomButton(
+                          text: FoodDetailsString.adicionarAoCarrinho.texto,
+                          padding: 13,
+                          margin: 15,
+                          onPressed: () {
+                            if (foodDetailsArgs.cameByCartPage &&
+                                foodDetailsArgs.cartItem != null) {
+                              foodDetailsController.putCartItem(
+                                uid: foodDetailsArgs.uid!,
+                                updatedCartItem: foodDetailsArgs.cartItem!,
                                 selectedAvailableAddons:
                                     _selectedAvailableAddons,
                               );
-                            },
-                          ),
-                        ],
-                      ),
+
+                              Navigator.pop(context);
+                            } else {
+                              foodDetailsController.postCartItem(
+                                uid: foodDetailsArgs.uid!,
+                                food: foodDetailsArgs.food,
+                                selectedAvailableAddons:
+                                    _selectedAvailableAddons,
+                              );
+
+                              Navigator.pop(context);
+                            }
+                          },
+                        ),
+                        CustomButton(
+                          text: AppString.comprarAgora.texto,
+                          padding: 13,
+                          margin: 15,
+                          onPressed: () {
+                            goToPaymentPage(
+                              context,
+                              uid: foodDetailsArgs.uid,
+                              cartItem: foodDetailsArgs.cameByCartPage
+                                  ? foodDetailsArgs.cartItem
+                                  : null,
+                              cameByCartPage: foodDetailsArgs.cameByCartPage,
+                            );
+
+                            foodDetailsController.insertDatabase(
+                              food: foodDetailsArgs.food,
+                              quantity: foodDetailsArgs.cartItem?.quantity,
+                              selectedAvailableAddons: _selectedAvailableAddons,
+                            );
+                          },
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 18)
                   ],
                 ),
               ),
             ),
-          ),
-        ),
-        SafeArea(
-            child: Opacity(
-          opacity: 0.7,
-          child: Container(
-            margin: const EdgeInsets.only(left: 8, top: 5),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-        ))
-      ],
+            SafeArea(
+                child: Opacity(
+              opacity: 0.7,
+              child: Container(
+                margin: const EdgeInsets.only(left: 8, top: 5),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_new),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ),
+            ))
+          ],
+        );
+      },
     );
   }
 }

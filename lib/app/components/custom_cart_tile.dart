@@ -32,7 +32,7 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
   CartController get cartController => widget.cartController;
   Function() get onDelete => widget.onDelete;
   late Debouncer _debouncer;
-  late double _heightCard;
+  double _heightCard = 120;
   int quantity = 0;
 
   @override
@@ -57,9 +57,9 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
 
   void sizeCard(BuildContext context) {
     if (cartItem.selectedAddons.isNotEmpty) {
-      _heightCard = MediaQuery.of(context).size.height * 0.18;
+      _heightCard = MediaQuery.of(context).size.height * 0.20;
     } else {
-      _heightCard = MediaQuery.of(context).size.height * 0.13;
+      _heightCard = MediaQuery.of(context).size.height * 0.15;
     }
   }
 

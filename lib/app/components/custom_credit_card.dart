@@ -60,6 +60,7 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
           },
           inputConfiguration: InputConfiguration(
             cardNumberDecoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(0),
               labelText: CreditCardString.numeroDoCartao.texto,
               hintText: CreditCardString.xxxxXxxxXxxxXxxx.texto,
               hintStyle: TextStyle(
@@ -75,6 +76,7 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
               ),
             ),
             expiryDateDecoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(0),
               labelText: CreditCardString.dataDeValidade.texto,
               hintText: CreditCardString.xxxx.texto,
               hintStyle: TextStyle(
@@ -90,6 +92,7 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
               ),
             ),
             cvvCodeDecoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(0),
               labelText: CreditCardString.cvv.texto,
               hintText: CreditCardString.xxx.texto,
               hintStyle: TextStyle(
@@ -105,6 +108,7 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
               ),
             ),
             cardHolderDecoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(0),
               labelText: CreditCardString.titularDoCartao.texto,
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(

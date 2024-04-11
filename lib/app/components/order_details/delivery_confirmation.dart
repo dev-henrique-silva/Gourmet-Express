@@ -79,7 +79,7 @@ class _DeliveryConfirmationState extends State<DeliveryConfirmation>
           padding: 15,
           borderRadius: 25,
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 5),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -40,11 +41,11 @@ class CustomButton extends StatelessWidget {
                     ),
                   ),
                 )
-              : Text(
+              : AutoSizeText(
                   text,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

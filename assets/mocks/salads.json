@@ -25,7 +25,7 @@
     },
     {
       "name": "Salada de Frutas",
-      "description": "Mistura de frutas frescas da estação.",
+      "description": "Frutas frescas da estação: uma variedade deliciosa e nutritiva para desfrutar a qualquer momento.",
       "imagePath": "assets/img/mocks/salads/salad_fruit.png",
       "price": 14.99,
       "category": "saladas",
@@ -37,7 +37,7 @@
     },
     {
       "name": "Salada Caprese",
-      "description": "Tomate, mozzarella, manjericão, azeite, sal.",
+      "description": "Tomate, mozzarella, manjericão, azeite e sal: uma explosão de sabores clássicos da culinária italiana.",
       "imagePath": "assets/img/mocks/salads/salad_caprese.png",
       "price": 16.99,
       "category": "saladas",
@@ -61,7 +61,7 @@
     },
     {
       "name": "Salada de Beterraba",
-      "description": "Beterraba, cenoura, alface, nozes, molho de vinagrete.",
+      "description": "Salada de beterraba, cenoura, alface e nozes, com um toque irresistível de molho de vinagrete.",
       "imagePath": "assets/img/mocks/salads/salad_beetroot.png",
       "price": 15.99,
       "category": "saladas",

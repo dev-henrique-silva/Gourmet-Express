@@ -2,7 +2,8 @@ enum ReceiptString {
   detalhesDoPedido('Detalhes do pedido'),
   obrigadoPeloSeuPedido('Obrigado pelo seu pedido!'),
   aquiEstaOSeuRecibo('Aqui está o seu recibo:'),
-  divisorDePedidos('--------------------------------------------------'),
+  divisorDePedidos(
+      '--------------------------------------------------------------'),
   custoDaEntrega('Custo da entrega:'),
   totalDeItens('Total de itens:'),
   totalAPagar('Total a pagar:'),
