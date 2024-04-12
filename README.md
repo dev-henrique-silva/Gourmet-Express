@@ -63,7 +63,7 @@ O objetivo do aplicativo é criar uma experiência real sobre um app de delivery
          alt="Payment"/></td>
      <td style="text-align:center;" width="240"><img src="https://github.com/dev-henrique-silva/Gourmet-Express/assets/81243358/f43bfd0c-a157-4eb7-85ab-73424c3311ed" 
          alt="Order Datails"/></td>
-     <td style="text-align:center;" width="240"><img src="https://github.com/dev-henrique-silva/Gourmet-Express/assets/81243358/b93dd841-2b26-4b2e-9780-8759e3360b44" 
+     <td style="text-align:center;" width="240"><img src="https://github.com/dev-henrique-silva/Gourmet-Express/assets/81243358/78c77b2e-8fe1-404c-a6fa-785231bb9e5d" 
          alt = "Orders" /></td>
      <td style="text-align:center;" width="240"><img src="https://github.com/dev-henrique-silva/Gourmet-Express/assets/81243358/d1da8719-515d-4b6d-b529-2209d13e23a7" 
          alt = "Contact" /></td>
