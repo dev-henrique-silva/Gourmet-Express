@@ -86,12 +86,12 @@ class PaymentController {
   double _calculateTotalValue() {
     double foodPrice = 0.0;
     double addonPrice = 0.0;
-    int quantity = 0;
+
     double totalPayable = 0.0;
 
     for (var element in cartItems) {
       foodPrice += element.food.price;
-      quantity += element.quantity;
+
       for (var addon in element.selectedAddons) {
         addonPrice += addon.price;
       }
