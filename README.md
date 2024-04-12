@@ -9,7 +9,7 @@ O objetivo do aplicativo é criar uma experiência real sobre um app de delivery
 <ul>
   <li> Criar sua conta. </li>
   <li> Visualizar o catálogo de produtos.</li>
-  <li> Visualizar um produto expecífico.</li>
+  <li> Visualizar um produto específico.</li>
   <li> Adicionar produtos ao carrinho.</li>
   <li> Adicionar dados do cartão de crédito.</li>
   <li> Finalizar a compra.</li>
