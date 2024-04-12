@@ -13,14 +13,18 @@ class OrderService implements IOrderService {
 
   @override
   Stream<List<OrderModel>> getOrdersStream(String uid) {
-    return notesCollection.doc(uid).collection('order').snapshots().map(
-        (snapshot) => snapshot.docs
+    return notesCollection
+        .doc(uid)
+        .collection('order')
+        .orderBy('orderDate', descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
             .map((doc) => OrderModel.fromMap(doc.data(), id: doc.id))
             .toList());
   }
 
   @override
-  Stream<OrderModel> getLastOrderStream(String uid) {
+  Stream<OrderModel> getCurrentOrderStream(String uid) {
     return notesCollection
         .doc(uid)
         .collection('order')
@@ -30,6 +34,18 @@ class OrderService implements IOrderService {
           (snapshot) => snapshot.docs
               .map((doc) => OrderModel.fromMap(doc.data(), id: doc.id))
               .first,
+        );
+  }
+
+  @override
+  Stream<OrderModel> getOrderById(String uid, String orderId) {
+    return notesCollection
+        .doc(uid)
+        .collection('order')
+        .doc(orderId)
+        .snapshots()
+        .map(
+          (snapshot) => OrderModel.fromMap(snapshot.data()!, id: snapshot.id),
         );
   }
 

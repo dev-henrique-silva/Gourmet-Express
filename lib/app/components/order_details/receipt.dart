@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/components/order_details/order_details.dart';
 import 'package:gourmetexpress/app/controllers/order_details_controller.dart';
 import 'package:gourmetexpress/app/models/order_model.dart';
+import 'package:gourmetexpress/app/utils/args/order_datails_args.dart';
 import 'package:gourmetexpress/app/utils/strings/recipt_string.dart';
 
 class Receipt extends StatefulWidget {
+  final OrderDetailsArgs orderDetailsArgs;
+
   final OrderDetailsController orderDetailsController;
-  final String uid;
 
   const Receipt({
     Key? key,
+    required this.orderDetailsArgs,
     required this.orderDetailsController,
-    required this.uid,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,8 @@ class Receipt extends StatefulWidget {
 }
 
 class _ReceiptState extends State<Receipt> {
-  String get uid => widget.uid;
+  String get uid => widget.orderDetailsArgs.uid;
+  OrderDetailsArgs get orderDetailsArgs => widget.orderDetailsArgs;
   OrderDetailsController get orderDetailsController =>
       widget.orderDetailsController;
 
@@ -29,7 +32,9 @@ class _ReceiptState extends State<Receipt> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: StreamBuilder<OrderModel>(
-          stream: widget.orderDetailsController.getOrder(uid),
+          stream: orderDetailsController.getOrder(
+            orderDetailsArgs: orderDetailsArgs,
+          ),
           builder: (context, snapshot) {
             final order = snapshot.data;
 

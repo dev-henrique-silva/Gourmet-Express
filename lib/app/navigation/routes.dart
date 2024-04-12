@@ -3,11 +3,13 @@ import 'package:gourmetexpress/app/controllers/cart_controller.dart';
 import 'package:gourmetexpress/app/controllers/food_details_controller.dart';
 import 'package:gourmetexpress/app/controllers/home_controller.dart';
 import 'package:gourmetexpress/app/controllers/order_details_controller.dart';
+import 'package:gourmetexpress/app/controllers/orders_controller.dart';
 import 'package:gourmetexpress/app/controllers/payment_controller.dart';
 import 'package:gourmetexpress/app/cubits/home/home_cubit.dart';
 import 'package:gourmetexpress/app/cubits/login/login_cubit.dart';
 import 'package:gourmetexpress/app/cubits/register_account/register_account_cubit.dart';
 import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
+import 'package:gourmetexpress/app/utils/args/order_datails_args.dart';
 import 'package:gourmetexpress/app/utils/args/payment_args.dart';
 import 'package:gourmetexpress/app/views/cart_view.dart';
 import 'package:gourmetexpress/app/views/contact_view.dart';
@@ -15,6 +17,7 @@ import 'package:gourmetexpress/app/views/food_details_view.dart';
 import 'package:gourmetexpress/app/views/home_view.dart';
 import 'package:gourmetexpress/app/views/login_view.dart';
 import 'package:gourmetexpress/app/views/order_details_view.dart';
+import 'package:gourmetexpress/app/views/orders_view.dart';
 import 'package:gourmetexpress/app/views/payment_view.dart';
 import 'package:gourmetexpress/app/views/register_account_view.dart';
 import 'package:gourmetexpress/app_inject.dart';
@@ -42,8 +45,13 @@ final Map<String, WidgetBuilder> routes = {
         paymentController: getIt<PaymentController>(),
       ),
   '/order_details': (context) => OrderDetailsView(
-        uid: ModalRoute.of(context)!.settings.arguments as String,
+        orderDetailsArgs:
+            ModalRoute.of(context)!.settings.arguments as OrderDetailsArgs,
         orderDetailsController: getIt<OrderDetailsController>(),
+      ),
+  '/orders': (context) => OrdersView(
+        uid: ModalRoute.of(context)!.settings.arguments as String,
+        ordersController: getIt<OrdersController>(),
       ),
   '/contact': (context) => ContactView(
         uid: ModalRoute.of(context)!.settings.arguments as String,

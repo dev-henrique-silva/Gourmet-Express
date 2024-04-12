@@ -58,7 +58,7 @@ class PaymentController {
 
   String _orderDate() {
     DateTime dataTimeNow = DateTime.now();
-    var formatter = DateFormat('dd/MM/yyyy HH:mm:ss');
+    var formatter = DateFormat('dd/MM/yyyy - HH:mm');
     String dateFormatted = formatter.format(dataTimeNow);
 
     return dateFormatted;
@@ -97,7 +97,7 @@ class PaymentController {
       }
     }
 
-    totalPayable = (foodPrice + addonPrice) * quantity + deliveryCost;
+    totalPayable = (foodPrice + addonPrice) + deliveryCost;
 
     return totalPayable;
   }

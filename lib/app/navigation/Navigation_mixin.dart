@@ -4,6 +4,7 @@ import 'package:gourmetexpress/app/models/cart_item_model.dart';
 import 'package:gourmetexpress/app/models/food_model.dart';
 import 'package:gourmetexpress/app/navigation/navigation_custom.dart';
 import 'package:gourmetexpress/app/utils/args/food_details_args.dart';
+import 'package:gourmetexpress/app/utils/args/order_datails_args.dart';
 import 'package:gourmetexpress/app/utils/args/payment_args.dart';
 
 mixin NavigationMixin {
@@ -60,19 +61,6 @@ mixin NavigationMixin {
         arguments: uid, replace: replace);
   }
 
-  void goToContactPage(
-    BuildContext context, {
-    String? uid,
-    bool pushAndRemoveUntil = false,
-  }) {
-    navigationCustom.navigate(
-      context,
-      '/contact',
-      arguments: uid,
-      pushAndRemoveUntil: pushAndRemoveUntil,
-    );
-  }
-
   goToPaymentPage(
     BuildContext context, {
     String? uid,
@@ -89,13 +77,46 @@ mixin NavigationMixin {
         ));
   }
 
-  goToOrderDetailsPage(BuildContext context,
-      {required String uid, bool replace = false}) {
+  goToOrderDetailsPage(
+    BuildContext context, {
+    required String uid,
+    String orderId = '',
+    bool justView = false,
+    bool replace = false,
+  }) {
     navigationCustom.navigate(
       context,
       '/order_details',
-      arguments: uid,
+      arguments: OrderDetailsArgs(
+        uid: uid,
+        orderId: orderId,
+        justView: justView,
+      ),
       replace: replace,
+    );
+  }
+
+  void goToContactPage(
+    BuildContext context, {
+    String? uid,
+    bool pushAndRemoveUntil = false,
+  }) {
+    navigationCustom.navigate(
+      context,
+      '/contact',
+      arguments: uid,
+      pushAndRemoveUntil: pushAndRemoveUntil,
+    );
+  }
+
+  void goToOrdersPage(
+    BuildContext context, {
+    required String uid,
+  }) {
+    navigationCustom.navigate(
+      context,
+      '/orders',
+      arguments: uid,
     );
   }
 }

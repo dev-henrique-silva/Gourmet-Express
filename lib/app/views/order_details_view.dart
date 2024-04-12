@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:gourmetexpress/app/components/order_details/receipt.dart';
 import 'package:gourmetexpress/app/controllers/order_details_controller.dart';
 import 'package:gourmetexpress/app/navigation/Navigation_mixin.dart';
+import 'package:gourmetexpress/app/utils/args/order_datails_args.dart';
 import 'package:gourmetexpress/app/utils/strings/recipt_string.dart';
 
 class OrderDetailsView extends StatefulWidget {
-  final String uid;
+  final OrderDetailsArgs orderDetailsArgs;
+
   final OrderDetailsController orderDetailsController;
 
   const OrderDetailsView({
-    super.key,
-    required this.uid,
+    Key? key,
+    required this.orderDetailsArgs,
     required this.orderDetailsController,
-  });
+  }) : super(key: key);
 
   @override
   State<OrderDetailsView> createState() => _OrderDetailsViewState();
@@ -20,7 +22,7 @@ class OrderDetailsView extends StatefulWidget {
 
 class _OrderDetailsViewState extends State<OrderDetailsView>
     with NavigationMixin {
-  String get uid => widget.uid;
+  OrderDetailsArgs get orderDetailsArgs => widget.orderDetailsArgs;
   OrderDetailsController get orderDetailsController =>
       widget.orderDetailsController;
 
@@ -35,11 +37,15 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
             color: Theme.of(context).colorScheme.inversePrimary,
           ),
           onPressed: () {
-            goToHomePage(
-              context,
-              uid: uid,
-              pushAndRemoveUntil: true,
-            );
+            if (orderDetailsArgs.justView) {
+              Navigator.pop(context);
+            } else {
+              goToHomePage(
+                context,
+                uid: orderDetailsArgs.uid,
+                pushAndRemoveUntil: true,
+              );
+            }
           },
         ),
         title: Text(
@@ -50,7 +56,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
         ),
       ),
       body: Receipt(
-        uid: uid,
+        orderDetailsArgs: orderDetailsArgs,
         orderDetailsController: orderDetailsController,
       ),
     );

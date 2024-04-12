@@ -62,7 +62,9 @@ class _CustomDrawerState extends State<CustomDrawer> with NavigationMixin {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              goToOrdersPage(context, uid: uid);
+            },
           ),
           ListTile(
             leading: Icon(

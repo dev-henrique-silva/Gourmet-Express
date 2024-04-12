@@ -13,8 +13,12 @@ class CartItemService implements ICartItemService {
 
   @override
   Stream<List<CartItemModel>> getCartItemStream(String uid) {
-    return notesCollection.doc(uid).collection('cartItem').snapshots().map(
-        (snapshot) => snapshot.docs
+    return notesCollection
+        .doc(uid)
+        .collection('cartItem')
+        .orderBy('timestamp', descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
             .map((doc) => CartItemModel.fromMap(doc.data(), id: doc.id))
             .toList());
   }

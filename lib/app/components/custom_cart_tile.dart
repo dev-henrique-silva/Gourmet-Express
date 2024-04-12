@@ -59,7 +59,7 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
     if (cartItem.selectedAddons.isNotEmpty) {
       _heightCard = MediaQuery.of(context).size.height * 0.20;
     } else {
-      _heightCard = MediaQuery.of(context).size.height * 0.15;
+      _heightCard = MediaQuery.of(context).size.height * 0.14;
     }
   }
 
@@ -189,6 +189,7 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
                         ],
                       ),
                     ),
+                    const Spacer(),
                   ],
                 ),
               ),
