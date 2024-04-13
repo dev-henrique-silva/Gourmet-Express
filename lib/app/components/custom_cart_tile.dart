@@ -189,7 +189,6 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
                         ],
                       ),
                     ),
-                    const Spacer(),
                   ],
                 ),
               ),
