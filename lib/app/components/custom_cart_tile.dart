@@ -144,7 +144,7 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
                                 cartController.putCartItem(
                                   uid: uid,
                                   updatedCartItem: cartItem.copyWith(
-                                    quantity: cartItem.quantity++,
+                                    quantity: cartItem.quantity,
                                     totalPrice: cartItem.totalPrice,
                                   ),
                                 );
@@ -152,23 +152,26 @@ class _CustomCartTileState extends State<CustomCartTile> with NavigationMixin {
                             );
                           },
                           onDecrement: () {
-                            if (cartItem.quantity <= 1) return;
-                            setState(() {
-                              cartItem.quantity--;
-                              cartController.subtrationTotalValue(cartItem);
-                            });
+                            if (cartItem.quantity <= 1) {
+                              return;
+                            } else {
+                              setState(() {
+                                cartItem.quantity--;
+                                cartController.subtrationTotalValue(cartItem);
+                              });
 
-                            _debouncer.run(
-                              () {
-                                cartController.putCartItem(
-                                  uid: uid,
-                                  updatedCartItem: cartItem.copyWith(
-                                    quantity: cartItem.quantity--,
-                                    totalPrice: cartItem.totalPrice,
-                                  ),
-                                );
-                              },
-                            );
+                              _debouncer.run(
+                                () {
+                                  cartController.putCartItem(
+                                    uid: uid,
+                                    updatedCartItem: cartItem.copyWith(
+                                      quantity: cartItem.quantity,
+                                      totalPrice: cartItem.totalPrice,
+                                    ),
+                                  );
+                                },
+                              );
+                            }
                           },
                         ),
                       ],
