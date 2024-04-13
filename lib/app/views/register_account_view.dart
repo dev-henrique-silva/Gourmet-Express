@@ -111,6 +111,7 @@ class _RegisterAccountViewState extends State<RegisterAccountView>
                         registerCubit.registerAccount(
                           email: emailController.text,
                           password: passwordController.text,
+                          confirm: confirmController.text,
                         );
                       },
                     ),

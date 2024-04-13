@@ -14,8 +14,16 @@ class RegisterAccountCubit extends Cubit<RegisterAccountState> {
   Future<void> registerAccount({
     required String email,
     required String password,
+    required String confirm,
   }) async {
     emit(RegisterLoading());
+
+    if (password != confirm) {
+      emit(const RegisterFailure(
+          message: "As senhas não coincidem! Por favor, tente novamente."));
+      return;
+    }
+
     try {
       final result = await _registerController.registerAccount(
           email: email, password: password);
